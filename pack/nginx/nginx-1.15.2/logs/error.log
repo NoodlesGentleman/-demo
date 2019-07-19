@@ -1,0 +1,34 @@
+2019/03/21 13:32:03 [notice] 14800#5464: signal process started
+2019/03/21 13:33:48 [notice] 16788#15988: signal process started
+2019/03/21 13:36:20 [notice] 4672#9664: signal process started
+2019/03/21 13:41:39 [notice] 7424#13240: signal process started
+2019/03/21 13:50:18 [notice] 9944#5996: signal process started
+2019/03/21 13:56:23 [notice] 12380#1248: signal process started
+2019/03/21 14:12:28 [notice] 12368#6440: signal process started
+2019/03/21 14:13:09 [notice] 5764#12464: signal process started
+2019/03/21 14:49:34 [notice] 11388#10440: signal process started
+2019/03/21 14:53:34 [notice] 8460#15188: signal process started
+2019/03/21 14:53:36 [notice] 16672#7420: signal process started
+2019/03/21 14:53:37 [notice] 13380#16056: signal process started
+2019/03/21 15:59:59 [error] 7016#14228: *241 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/developmentSys/accessory/accessoryList" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /developmentSys/accessory/accessoryList HTTP/1.1", host: "localhost:8776"
+2019/03/21 16:00:01 [error] 7016#14228: *241 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/developmentSys/accessory/accessoryList" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /developmentSys/accessory/accessoryList HTTP/1.1", host: "localhost:8776"
+2019/03/21 16:00:01 [error] 7016#14228: *241 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/developmentSys/accessory/accessoryList" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /developmentSys/accessory/accessoryList HTTP/1.1", host: "localhost:8776"
+2019/03/21 16:00:12 [error] 7016#14228: *241 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/developmentSys/modular/modularList" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /developmentSys/modular/modularList HTTP/1.1", host: "localhost:8776"
+2019/03/21 16:01:35 [error] 7016#14228: *242 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/systemInfo/typeList" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /systemInfo/typeList HTTP/1.1", host: "localhost:8776"
+2019/03/25 10:33:47 [error] 8036#16052: *2 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/login" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /login HTTP/1.1", host: "localhost:8776"
+2019/03/25 10:33:51 [error] 8036#16052: *2 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/login" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /login HTTP/1.1", host: "localhost:8776"
+2019/03/25 10:33:52 [error] 8036#16052: *2 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/login" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /login HTTP/1.1", host: "localhost:8776"
+2019/03/25 10:33:52 [error] 8036#16052: *2 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/login" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /login HTTP/1.1", host: "localhost:8776"
+2019/03/25 10:33:54 [error] 8036#16052: *2 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/login" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /login HTTP/1.1", host: "localhost:8776"
+2019/03/25 10:36:45 [notice] 5216#13940: signal process started
+2019/03/25 10:36:49 [error] 612#3300: *11 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/login" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /login HTTP/1.1", host: "localhost:8776"
+2019/03/25 10:37:00 [error] 612#3300: *13 CreateFile() "C:/Users/Administrator/Desktop/nginx-1.15.2/html/ERP/login" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /login HTTP/1.1", host: "localhost:8776"
+2019/05/23 10:16:17 [emerg] 13184#2312: CreateDirectory() "C:\Users\Administrator\Desktop\nginx-1.15.2/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2019/05/23 10:17:05 [emerg] 1776#9008: CreateDirectory() "C:\Users\Administrator\Desktop\nginx-1.15.2/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2019/05/23 10:19:20 [notice] 6712#6692: signal process started
+2019/05/23 10:19:20 [error] 6712#6692: OpenEvent("Global\ngx_reload_11396") failed (2: The system cannot find the file specified)
+2019/05/23 10:19:51 [emerg] 13044#13092: CreateDirectory() "C:\Users\Administrator\Desktop\nginx-1.15.2/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2019/05/23 10:22:03 [warn] 10744#13444: conflicting server name "www.qianyong.com" on 0.0.0.0:80, ignored
+2019/05/23 10:22:03 [emerg] 10744#13444: CreateDirectory() "C:\Users\Administrator\Desktop\nginx-1.15.2/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2019/05/23 10:23:40 [warn] 10636#6672: conflicting server name "www.qianyong.com" on 0.0.0.0:80, ignored
+2019/05/23 10:23:40 [emerg] 10636#6672: CreateDirectory() "C:\Users\Administrator\Desktop\nginx-1.15.2/temp/client_body_temp" failed (3: The system cannot find the path specified)

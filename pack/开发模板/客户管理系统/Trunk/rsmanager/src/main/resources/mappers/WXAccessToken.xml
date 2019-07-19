@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.AccessToken">	
+	<resultMap type="com.richest.manager.domain.AccessToken"  id="accessToken">
+		<result property="access_token" column="access_token" />
+		<result property="expires_in" column="expires_in" jdbcType="INTEGER"  javaType="java.lang.Integer"/>
+		<result property="errcode" column="errcode" />
+		<result property="errmsg" column="errmsg" />
+		<result property="createTime" column="createTime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+	</resultMap>
+	
+	<insert id="save" parameterType="AccessToken">
+		INSERT INTO `manager`.`wx_accesstoken` (`access_token`, `expires_in`, `errcode`, `errmsg`, `createTime`) 
+		VALUES (#{access_token}, #{expires_in}, #{errcode}, #{errmsg}, #{createTime});
+	</insert>
+	
+	<select id="getToken" resultMap="accessToken">
+		SELECT `access_token`, `expires_in`, `errcode`, `errmsg`, `createTime` 
+		FROM `manager`.`wx_accesstoken`
+		WHERE IFNULL(access_token, '') &lt;&gt; '' AND expires_in &gt; 0
+		ORDER BY id DESC
+		LIMIT 1;
+	</select>
+</mapper>

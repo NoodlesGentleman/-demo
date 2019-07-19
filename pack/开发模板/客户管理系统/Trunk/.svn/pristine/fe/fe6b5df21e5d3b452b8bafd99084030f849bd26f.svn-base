@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.QrCode">
+	<resultMap type="com.richest.manager.domain.QrCode"  id="qrcoderesult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="userId" column="userId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="userName" column="userName" />
+		<result property="userMobile" column="userMobile" />
+		<result property="buildingId" column="buildingId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="campaignId" column="campaignId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="salerId" column="salerId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="buildingName" column="buildingName" />
+		<result property="ticket" column="ticket" />
+		<result property="expire_seconds" column="expire_seconds"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="url" column="url" />
+	</resultMap>
+	
+	<insert id="save" parameterType="QrCode" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `manager`.`qrcode` (`userId`, `buildingId`, `campaignId`, `salerId`) 
+		VALUES (#{userId}, #{buildingId}, #{campaignId}, #{salerId});
+	</insert>
+	
+	<update id="update" parameterType="QrCode">
+		UPDATE `manager`.`qrcode` SET 
+		`ticket` = #{ticket},
+		`expire_seconds` = #{expire_seconds},
+		`url` = #{url}
+		WHERE id = #{id};
+	</update>
+	
+	<select id="getQrCodeById" resultMap="qrcoderesult">
+		SELECT A.*,B.name AS userName,B.mobile AS userMobile,C.name AS buildingName
+		FROM `manager`.`qrcode` A
+		INNER JOIN `manager`.`user` B ON A.userId = B.id 
+		INNER JOIN `manager`.`building` C ON A.buildingId = C.id 
+		WHERE A.id = #{id};
+	</select>
+</mapper>

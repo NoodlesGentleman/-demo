@@ -1,0 +1,12 @@
+wechat.appid=wx0fa69875ae3012f0
+wechat.secret=05f651a6d930a901f083733f7576b3c7
+wechat.oauth2.url=https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx0fa69875ae3012f0&secret=05f651a6d930a901f083733f7576b3c7&code={CODE}&grant_type=authorization_code
+#wechat.appid=wx7aa75fbe12057466
+#wechat.secret=fcf3a8e4f7a8b3eac1cfb8b67e206e60
+#wechat.oauth2.url=https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx7aa75fbe12057466&secret=fcf3a8e4f7a8b3eac1cfb8b67e206e60&code={CODE}&grant_type=authorization_code
+serviceUrl=http://114.80.208.222:8080/NOSmsPlatform/services/BusinessService
+userName=shangfu
+password=888333
+serviceUrl2=http://www.jianzhou.sh.cn/JianzhouSMSWSServer/services/BusinessService
+userName2=sdk_62985128
+password2=hue34f

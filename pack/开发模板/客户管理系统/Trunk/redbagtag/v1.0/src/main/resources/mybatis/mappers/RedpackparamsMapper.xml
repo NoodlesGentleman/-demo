@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.sof.marketing.model.Redpackparams" >
+  <resultMap id="BaseResultMap" type="com.sof.marketing.model.Redpackparams" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="pkey" property="pkey" jdbcType="VARCHAR" />
+    <result column="pvalue" property="pvalue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pid, pkey, pvalue
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from redpackparams
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from redpackparams
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sof.marketing.model.Redpackparams" useGeneratedKeys="true" keyProperty="id" >
+    insert into redpackparams (pid, pkey, pvalue
+      )
+    values (#{pid,jdbcType=INTEGER}, #{pkey,jdbcType=VARCHAR}, #{pvalue,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="batchsave" parameterType="java.util.List" >
+    insert into redpackparams
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      pid,
+      pkey,
+      pvalue,
+    </trim>
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+	   		#{item.pid,jdbcType=INTEGER},
+	      	#{item.pkey,jdbcType=VARCHAR},
+	      	#{item.pvalue,jdbcType=VARCHAR}
+      	</trim>
+	</foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sof.marketing.model.Redpackparams" >
+    update redpackparams
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="pkey != null" >
+        pkey = #{pkey,jdbcType=VARCHAR},
+      </if>
+      <if test="pvalue != null" >
+        pvalue = #{pvalue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sof.marketing.model.Redpackparams" >
+    update redpackparams
+    set pid = #{pid,jdbcType=INTEGER},
+      pkey = #{pkey,jdbcType=VARCHAR},
+      pvalue = #{pvalue,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

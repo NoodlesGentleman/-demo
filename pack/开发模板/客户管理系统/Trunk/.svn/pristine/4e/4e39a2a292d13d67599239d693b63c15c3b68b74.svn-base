@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sof.marketing.system.domain.SystemRole">
+	
+	<resultMap id="systemRoleResultMap" type="com.sof.marketing.system.domain.SystemRole">
+		<result column="role_id" property="role_id"/>
+		<result column="role_name" property="role_name"/>
+		<result column="role_desc" property="role_desc"/>
+		<result column="status" property="status"/>
+		<result column="create_person" property="create_person"/>
+		<result column="create_time" property="create_time"/>
+		<result column="update_person" property="update_person"/>
+		<result column="update_time" property="update_time"/>
+	</resultMap>
+	
+	<!-- insert data -->
+	<insert id="save" parameterType="com.sof.marketing.system.domain.SystemRole" >
+		INSERT INTO SYS_ROLE(ROLE_ID, ROLE_NAME, ROLE_DESC, STATUS, CREATE_PERSON, CREATE_TIME, UPDATE_PERSON, UPDATE_TIME)
+		VALUES(#{role_id}, #{role_name}, #{role_desc}, #{status}, #{create_person}, NOW(), #{update_person}, #{update_time})
+	</insert>
+	
+	<!-- update data -->
+	<update id="update" parameterType="com.sof.marketing.system.domain.SystemRole">
+		UPDATE SYS_ROLE
+		<set>
+			<if test="role_name != null and role_name != ''">
+				ROLE_NAME = #{role_name},
+			</if>
+			<if test="role_desc != null and role_desc !=''">
+				ROLE_DESC = #{role_desc},
+			</if>
+			<if test="status != null and status !=''">
+				STATUS = #{status},
+			</if>
+			<if test="create_person != null and create_person !=''">
+				CREATE_PERSON = #{create_person},
+			</if>
+			<if test="create_time != null">
+				CREATE_TIME = #{create_time},
+			</if>
+			<if test="update_person != null and update_person !=''">
+				UPDATE_PERSON = #{update_person},
+			</if>
+			<if test="update_time != null">
+				UPDATE_TIME = #{update_time},
+			</if>
+		</set>
+		<where>
+			ROLE_ID = #{role_id}
+		</where>
+	</update>
+	
+	<!-- delete data -->
+	<delete id="delete" parameterType="String" >
+		DELETE FROM SYS_ROLE
+		<where>
+			ROLE_ID = #{role_id}
+		</where>
+	</delete>
+	
+	<!-- select data -->
+	<select id="selectMaxNo" resultType="Integer">
+		SELECT MAX(ROLE_NO) FROM
+		SYS_ROLE
+	</select>
+	
+	<select id="getSysRolesList" parameterType="com.sof.marketing.system.domain.SystemRole"
+		resultMap="systemRoleResultMap">
+		SELECT A.ROLE_ID, A.ROLE_NAME, A.ROLE_DESC, A.STATUS, A.CREATE_PERSON
+			, A.CREATE_TIME, A.UPDATE_PERSON, A.UPDATE_TIME
+		FROM SYS_ROLE AS A
+		<where>
+			<if test="role_name != null and role_name !=''">
+				AND A.ROLE_NAME LIKE CONCAT('%', #{role_name}, '%')
+			 </if>
+			<if test="role_desc != null and role_desc !=''">
+				AND A.ROLE_DESC LIKE CONCAT('%', #{role_desc}, '%')
+			</if>
+			<if test="status != null and status !=''">
+				AND A.STATUS = #{status} 
+			</if>
+			<if test="create_person != null and create_person !=''">
+				AND A.CREATE_PERSON LIKE CONCAT('%', #{create_person}, '%')
+			</if>
+			<if test="update_person != null and update_person !=''">
+				AND A.UPDATE_PERSON LIKE CONCAT('%', #{update_person}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="getSysRolesListCount" parameterType="com.sof.marketing.system.domain.SystemRole"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM SYS_ROLE AS A
+		<where>
+			<if test="role_name != null and role_name !=''">
+				AND A.ROLE_NAME LIKE CONCAT('%', #{role_name}, '%')
+			 </if>
+			<if test="role_desc != null and role_desc !=''">
+				AND A.ROLE_DESC LIKE CONCAT('%', #{role_desc}, '%')
+			</if>
+			<if test="status != null and status !=''">
+				AND A.STATUS = #{status} 
+			</if>
+			<if test="create_person != null and create_person !=''">
+				AND A.CREATE_PERSON LIKE CONCAT('%', #{create_person}, '%')
+			</if>
+			<if test="update_person != null and update_person !=''">
+				AND A.UPDATE_PERSON LIKE CONCAT('%', #{update_person}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectRoleSingle" parameterType="String" resultMap="systemRoleResultMap">
+		SELECT * FROM SYS_ROLE
+		<where>
+			ROLE_ID = #{role_id}
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.Customer">
+	<resultMap type="com.richest.manager.domain.Customer"  id="customerresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+		<result property="mobile" column="mobile" />
+		<result property="userid" column="userid"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<insert id="save" parameterType="Customer" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `manager`.`customer` (`name`, `mobile`, `userid`) 
+		VALUES (#{name}, #{mobile}, #{userid});
+	</insert>
+	
+	<select id="getCustomer" resultMap="customerresult">
+		SELECT * FROM customer WHERE `name` = #{name} AND mobile = #{mobile} AND userid = #{userid};
+	</select>
+	
+	<select id="getCustomerByUserId" resultMap="customerresult">
+		<!-- SELECT * FROM customer WHERE userid = #{userid}; -->
+		SELECT A.* FROM customer A 
+		LEFT OUTER JOIN 
+		(SELECT customerId,MAX(createTime) AS createTime FROM campaign GROUP BY customerId) B
+		ON A.id = B.customerId WHERE A.userid = #{userid} ORDER BY B.createTime DESC
+	</select>
+	
+	<select id="checkVisited" resultType="java.lang.Integer">
+		SELECT COUNT(id) FROM naturalvisit WHERE buildingId = #{buildingId} AND mobile = #{mobile} AND NOW() &lt; protectDate;
+	</select>
+	
+	<select id="checkProtect" resultType="java.lang.Integer">
+		SELECT COUNT(id) FROM campaign WHERE buildingId = #{buildingId} AND customermobile = #{mobile} AND status &lt;&gt; 'ZF' AND protectDate IS NOT NULL AND NOW() &lt; protectDate;
+	</select>
+</mapper>

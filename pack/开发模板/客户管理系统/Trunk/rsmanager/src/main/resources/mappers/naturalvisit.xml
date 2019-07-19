@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.NaturalVisit">
+	<resultMap type="com.richest.manager.domain.NaturalVisit"  id="naturalvisitresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="buildingId" column="buildingId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="mobile" column="mobile" />
+		<result property="protectDate" column="protectDate" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+	</resultMap>
+	
+	<insert id="save" parameterType="NaturalVisit" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `manager`.`naturalvisit` (`buildingId`, `mobile`, `protectDate`) 
+		SELECT buildingId,customermobile,DATE_ADD(NOW(), INTERVAL (SELECT cusprotectday FROM building WHERE id = `manager`.`campaign`.buildingId) DAY) FROM `manager`.`campaign` WHERE id = #{id};
+	</insert>
+</mapper>

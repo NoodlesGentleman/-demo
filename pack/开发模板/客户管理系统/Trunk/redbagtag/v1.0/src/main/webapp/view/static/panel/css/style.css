@@ -1,0 +1,350 @@
+/*ÃƒÂ¥Ã‹â€ Ã¯Â¿Â½ÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œ*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,legend,button
+form,fieldset,input,textarea,p,blockquote,th,td {   
+	padding: 0;   
+	margin: 0;   
+}
+/* ÃƒÂ©Ã¢â‚¬Â¦Ã…â€™ÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã¢â‚¬ï¿½Ã‚Â¹ */
+body {
+    background:#fff;color:#333;font-size:14px;font-family:"Microsoft YaHei","Arial","Arial Narrow";
+}
+
+/* ÃƒÂ§Ã…Â¸Ã‚Â­ÃƒÂ¥Ã‚Â¼Ã¢â‚¬Â¢ÃƒÂ§Ã¢â‚¬ï¿½Ã‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¥Ã¯Â¿Â½Ã‚Â¯ÃƒÂ¥Ã¯Â¿Â½Ã¢â‚¬â€œÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…Â¡''ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œ"" */
+q:before,q:after {content:ÃƒÂ¢Ã¢â€šÂ¬Ã¯Â¿Â½;}  
+
+/* ÃƒÂ§Ã‚Â¼Ã‚Â©ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â¾ÃƒÂ§Ã¢â‚¬Â°Ã¢â‚¬Â¡ÃƒÂ§Ã‚Â­Ã¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬â€�Ã‚Â ÃƒÂ¨Ã‚Â¾Ã‚Â¹ÃƒÂ¦Ã‚Â¡Ã¢â‚¬Â  */
+fieldset,img,abbr,acronym {border: 0 none;}
+abbr,acronym {font-variant: normal;}
+legend {color:#000;}
+
+/* ÃƒÂ¦Ã‚Â¸Ã¢â‚¬Â¦ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ§Ã¢â‚¬Â°Ã‚Â¹ÃƒÂ¦Ã‚Â®Ã…Â ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â®Ã‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€�ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€�ÃƒÂ¥Ã¯Â¿Â½Ã‚Â· */
+address,caption,cite,code,dfn,em,strong,th,var {   
+	font-weight: normal;   
+	font-style: normal;   
+}
+
+/* ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ */
+sup {vertical-align: text-top;}
+sub {vertical-align: text-bottom;}
+
+/* ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¾Ã‚Â¹ÃƒÂ¦Ã‚Â¡Ã¢â‚¬Â ÃƒÂ¨Ã‚Â¢Ã‚Â«ÃƒÂ¥Ã¯Â¿Â½Ã‹â€ ÃƒÂ¥Ã‚Â¹Ã‚Â¶ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã¯Â¿Â½Ã¢â‚¬Â¢ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¾Ã‚Â¹ÃƒÂ¦Ã‚Â¡Ã¢â‚¬Â , ÃƒÂ¦Ã…â€™Ã¢â‚¬Â¡ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â ÃƒÂ©Ã…Â¡Ã¢â‚¬ï¿½ÃƒÂ¨Ã‚Â¾Ã‚Â¹ÃƒÂ¦Ã‚Â¡Ã¢â‚¬Â ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã¯Â¿Â½Ã¢â‚¬Â¢ÃƒÂ¥Ã¢â‚¬Â¦Ã†â€™ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ¨Ã‚Â¾Ã‚Â¹ÃƒÂ§Ã¢â‚¬Â¢Ã…â€™ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ©Ã¢â‚¬â€�Ã‚Â´ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â·Ã¯Â¿Â½ÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Âº0*/
+table {   
+	border-collapse: collapse;   
+	border-spacing: 0;   
+}   
+
+/* ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ©Ã‚Â¢Ã‹Å“ÃƒÂ¥Ã¯Â¿Â½Ã…Â ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¥Ã‚Â±Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â·Ã‚Â¦ÃƒÂ¦Ã‹Å“Ã‚Â¾ÃƒÂ§Ã‚Â¤Ã‚Âº */
+caption,th {text-align: left;}
+input,img,select {vertical-align:middle;}
+
+/* ÃƒÂ¦Ã‚Â¸Ã¢â‚¬Â¦ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€�ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¥Ã‚Â¼Ã¯Â¿Â½ */
+ol,ul {list-style: none;}  
+
+/* ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¦Ã…Â½Ã‚Â§ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€�ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ */
+input,button,textarea,select,optgroup,option {
+    font-family:inherit;
+    font-size:inherit;
+    font-style:inherit;
+    font-weight:inherit;
+}
+
+/* ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ©Ã‚Â¢Ã‹Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã†â€™ÃƒÂ§Ã‚Â´Ã‚Â ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¥Ã‚Â¼Ã¯Â¿Â½ÃƒÂ¦Ã‚Â¸Ã¢â‚¬Â¦ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ */ 
+h1,h2,h3,h4,h5,h6 {   
+	font-weight: normal;   
+	font-size: 100%;   
+}   
+
+/* ÃƒÂ©Ã¢â‚¬Å“Ã‚Â¾ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¥Ã‚Â¼Ã¯Â¿Â½ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¥Ã¯Â¿Â½Ã‚Â¯ÃƒÂ©Ã¢â‚¬Â¦Ã…â€™ÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã¢â‚¬ï¿½Ã‚Â¹ */
+del,ins,a {text-decoration:none;}
+a {color:#442A78;}
+a:hover{color:#005AB2;} 
+
+/* ÃƒÂ©Ã‚Â¼Ã‚Â ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¥Ã‚Â¼Ã¯Â¿Â½ */
+input[type="submit"] {cursor: pointer;}
+button {cursor: pointer;}
+input::-moz-focus-inner { border: 0; padding: 0;}
+
+.clear {clear:both;}
+/*ÃƒÂ¥Ã‹â€ Ã¯Â¿Â½ÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œ*/
+.lh50{
+	line-height:50px;
+	height:50px;
+}
+.fs18{
+	font-size: 18px;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.w250 {
+	width: 250px;
+}
+strong {
+	font-weight: normal;
+}
+
+/*ÃƒÂ¥Ã¯Â¿Â½Ã‹â€ ÃƒÂ¤Ã‚Â½Ã…â€œÃƒÂ¥Ã…â€™Ã‚Â»ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¢ÃƒÂ§Ã‚Â®Ã‚Â¡ÃƒÂ§Ã¯Â¿Â½Ã¢â‚¬Â */
+.btn_long {
+	height: 35px;
+	width: 120px;
+	font-size: 16px;
+	margin: 10px 10px 20px 0px;
+	cursor: pointer;
+	border: 1px solid #DADADA;
+	background:#FAFAFA;
+	color: #333;
+	border-radius: 3px;
+	text-align:center;
+}
+a .btn_long:hover {
+	background-color: #EDEDED;
+	text-decoration: none;
+}
+
+/*ÃƒÂ¨Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ§Ã‚Â®Ã‚Â¡ÃƒÂ§Ã¯Â¿Â½Ã¢â‚¬Â ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¥Ã‚Â¼Ã¯Â¿Â½*/
+.btn_add {
+	height: 35px;
+	line-height: 35px;	
+	font-size: 14px;
+	padding: 0 8px;
+	margin-top: 7px;
+	border: 1px solid #DADADA;
+	border-radius: 3px;
+	background:#FAFAFA;
+}
+a .btn_add:hover {
+	background-color: #EDEDED;
+}
+.tb_h80 td{
+	line-height: 80px;
+	height: 80px;
+}
+table td, table th {
+	text-align: center;
+	border-bottom: 1px #C6C6C6 solid;
+	color:#333;
+}
+.has_border td, .has_border th{
+	border:  1px #B2C9DE solid;
+}
+table td a {
+	margin: 0 3px;
+}
+table th {
+	line-height: 40px;
+	background: #F0F0F0;
+	color: #333;
+}
+table tr:nth-child(odd) {
+	background: #FCFCFC;
+}
+table tr:nth-child(odd).no_color {
+	background-color: #fff;
+}
+select option:nth-child(odd) {
+	background: #FCFCFC;
+}
+table .img1 {
+	height: 60px;
+	width: 120px;
+	margin: 0 auto;
+	background-image: url(../img/tuandui.png);
+	background-size: 100%;
+}
+table {
+	border-collapse: collapse;
+	border: none;
+}
+.tb_w170 {
+	width: 170px;
+}
+.tb_w250 {
+	width: 250px;
+}
+.tb_w815 {
+	width: 815px;
+	margin-top: 10px;
+}
+.tb_w600 {
+	width: 600px;
+}
+.tb_w400 {
+	width: 400px;
+}
+.tb_w1000 {
+	width: 1000px;
+}
+
+/*ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â¢Ã…Â¾ÃƒÂ¨Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¥Ã‚Â¼Ã¯Â¿Â½*/
+.out {
+	min-width:1280px;
+	overflow: hidden;
+}
+.box {
+	padding: 10px 0;
+	border-bottom: 1px dashed #E5E5E5;
+	overflow: hidden;
+	min-width:1280px;
+}
+.shangchuan {
+	vertical-align: bottom;
+	width: 200px;
+}
+.sel {
+	width: 204px;
+	height: 30px;
+}
+.sel option{
+	height:25px;
+	line-height: 25px;
+}
+.wenben {
+	width: 204px;
+	height: 30px;
+}
+
+/*ÃƒÂ¥Ã¯Â¿Â½Ã‹â€ ÃƒÂ¤Ã‚Â½Ã…â€œÃƒÂ¥Ã…â€™Ã‚Â»ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¢ÃƒÂ§Ã…â€œÃ¯Â¿Â½ÃƒÂ¥Ã‚Â¸Ã¢â‚¬Å¡ÃƒÂ§Ã‚Â®Ã‚Â¡ÃƒÂ§Ã¯Â¿Â½Ã¢â‚¬Â */
+table.tb_h50 th, table.tb_h50 td {
+	line-height: 40px;
+	height: 40px;
+}
+
+/*ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â¢Ã…Â¾ÃƒÂ¥Ã¯Â¿Â½Ã‹â€ ÃƒÂ¤Ã‚Â½Ã…â€œÃƒÂ¥Ã…â€™Ã‚Â»ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¢*/
+
+.box1 {
+	border: 1px solid #333;
+	height: 200px;
+	width: 500px;
+	margin-bottom: 10px;
+}
+
+/*ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â¢Ã…Â¾ÃƒÂ¥Ã…â€™Ã‚Â»ÃƒÂ§Ã¢â‚¬ï¿½Ã…Â¸*/
+.form_left, .form_mid {
+	float: left;
+	width: 33.333%;
+}
+.form_right {
+	float: left;
+	width: 33.333%;
+}
+.doc_pho {
+	display: inline-block;
+	vertical-align: top;
+}
+.mar {
+	margin: 0 10px;
+}
+.mar_t {
+	margin-top: 10px;
+}
+.mar_b{
+	margin-bottom:10px;
+}
+.form_right .photo {
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+.doc_num {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.ver_t {
+	vertical-align: top;
+}
+.ver_b {
+	vertical-align: bottom;
+}
+textarea {
+	resize: none;
+}
+.pic_size {
+	width: 240px;
+	height: 150px;
+	display: inline-block;
+}
+table.tb_w100 {
+	width: 100%;
+	min-width: 1200px;
+}
+.lab {
+	display: block;
+	height: 25px;
+	line-height: 25px;
+	font-weight: normal;
+}
+.lab input{
+	margin:-3px 9px 0 0;
+}
+/*ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã‚Â»ÃƒÂ§Ã¢â‚¬ï¿½Ã…Â¸*/
+.doc_name {
+	display: inline-block;
+}
+.top {
+	border-bottom: 1px dashed #E5E5E5;
+	padding-bottom: 10px;
+}
+
+/*ÃƒÂ¥Ã…â€™Ã‚Â»ÃƒÂ§Ã¢â‚¬ï¿½Ã…Â¸ÃƒÂ¨Ã‚Â¯Ã¢â‚¬Å¾ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€�ÃƒÂ¦Ã‚Â®Ã‚ÂµÃƒÂ§Ã‚Â®Ã‚Â¡ÃƒÂ§Ã¯Â¿Â½Ã¢â‚¬Â -ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ¦Ã…â€œÃ‚Â¯ÃƒÂ¦Ã‚Â°Ã‚Â´ÃƒÂ¥Ã‚Â¹Ã‚Â³*/
+.tab_form {
+	display:inline-block;
+	height: 50px;
+	line-height: 50px;
+	width: 120px;
+	border: none;
+	outline: none;
+	text-align: right;
+}
+
+/*ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â¢Ã…Â¾ÃƒÂ©Ã¢â‚¬ï¿½Ã¢â€šÂ¬ÃƒÂ¥Ã¢â‚¬ï¿½Ã‚Â®*/
+button.add, button.minus {
+	height: 30px;
+	width: 50px;
+}
+.h30{
+	height: 30px;
+}
+/*data-user*/
+.num{
+	height: 51px;
+	border-bottom: 1px solid #999;
+
+}
+.num li{
+	float: left;
+	border: 1px solid #999;
+	border-left: none;
+	border-bottom:none;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 15px;
+	cursor: pointer;
+	background-color: #fff;
+}
+.num li:first-child{
+	border-left: 1px solid #999;
+}
+.num li.current{
+	background:#ddd;
+	z-index: 10000;
+}
+.Odata{
+	position: relative;
+	margin-top: 30px;
+}
+.Odata li{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1000px;
+	height: 650px;
+	background-size: cover;
+}
+.box_case{
+	width:800px;
+	padding:15px 15px;;
+	border:1px solid #ccc;
+}

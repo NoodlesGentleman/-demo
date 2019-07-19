@@ -1,0 +1,170 @@
+/* 
+* @Author: zhaowg
+* @Date:   2016-01-15 10:59:54
+* @Last Modified by:   zhaowg
+* @Last Modified time: 2016-01-15 13:48:48
+*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: 16px;
+	color: #666;
+	font-family: Microsoft YaHei, Verdana, Simsun;
+	background: #fff;
+	line-height: 24px;
+}
+fieldset, img {
+	border: 0;
+}
+ol, ul {
+	list-style: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+}
+em {
+	font-style: normal;
+}
+input, button, select, textarea {
+	outline: none;
+}
+textarea {
+	resize: none;
+}
+p {
+	text-align: justify;
+	text-justify: distribute;
+}
+a {
+	color: #fff;
+	text-decoration: none;
+}
+a:hover {
+	color: #52A7FC;
+	text-decoration: none;
+}
+
+body {
+	background: url(../images/index_bg.png) no-repeat;
+	background-size: cover;
+	color: #fff;
+	}
+.neirong{
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.top{
+	overflow: hidden; 
+}
+.logo{
+	width: 153px;
+	height: 79px;
+	background: url(../images/logo.png);
+	float: left;
+	margin: 0;
+	cursor: pointer;
+}
+.nav{
+	float: left;
+}
+.nav ul li{
+	float: left;
+	padding: 0 35px;
+	line-height: 79px;
+	margin: 0;
+}
+.login{
+	width: 120px;
+	height: 35px;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	background: rgba(0,0,0,.3);
+	float: right;
+	margin-top: 22px;
+	line-height: 35px;
+	text-align: center;
+}
+.login:hover{
+	background: rgba(0,0,0,.5);	
+}
+.login:hover a{
+	color: #fff;	
+}
+.login a{
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+.main{
+	margin: 0 auto;
+	margin-left: -35px;
+}
+.left_download{
+	width: 296px;
+	height: 135px;
+	margin-left: 153px;
+	float: left;
+}
+.right_download{
+	width: 296px;
+	height: 135px;
+	margin-right: 153px;
+	float: right;
+}
+.inner_left{
+	float: left;
+}
+.inner_left a{
+	display: block;
+	width: 160px;
+	height: 48px;
+	margin-bottom: 20px; 
+}
+.inner_left a.iphone{
+	background: url(../images/iPhone_download.png) no-repeat;
+}
+.inner_left a.android{
+	background: url(../images/android_download.png) no-repeat;
+}
+.inner_right{
+	float: right;
+	height: 115px;
+	width: 115px;
+	background: url(../images/erweima.png) no-repeat;
+}
+.footer{
+	height: 72px;
+	background: rgba(0,0,0,.3);
+	width: 100%;
+}
+.fot_inner{
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+	line-height: 72px;
+	font-size: 12px;
+}
+.fot_in_left{
+	float: left;
+}
+.fot_in_left ul li{
+	float: left;
+}
+.fot_in_left ul li{
+	margin-left: 10px;
+}
+.fot_in_left ul li a{
+	margin: 0 10px;
+}
+.fot_in_left ul li:nth-child(1){
+	margin-left: 0;
+}
+.fot_in_left ul li a:nth-child(1){
+	margin-left: 0;
+}
+.fot_in_right{
+	float: right;
+}

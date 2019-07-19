@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sof.marketing.system.domain.SystemUser">
+
+	<resultMap id="systemUserResultMap" type="com.sof.marketing.system.domain.SystemUser">
+		<result property="user_id" column="user_id" />
+		<result property="user_login_name" column="user_login_name" />
+		<result property="user_pwd" column="user_pwd" />
+		<result property="randomStr" column="randomStr" />
+		<result property="userName" column="userName" />
+		<result property="userMobile" column="userMobile" />
+		<result property="userSex" column="userSex" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="isSuperAdmin" column="isSuperAdmin" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="role_id" column="role_id" />
+		<result property="role_name" column="role_name" />
+	</resultMap>
+
+	<!-- insert data -->
+	<insert id="save" parameterType="com.sof.marketing.system.domain.SystemUser">
+		INSERT INTO SYS_USER (USER_ID, USER_LOGIN_NAME, USER_PWD, RANDOMSTR, USERNAME, USERMOBILE, USERSEX)
+		VALUES (#{user_id}, #{user_login_name}, #{user_pwd}, #{randomStr}, #{userName}, #{userMobile}, #{userSex})
+	</insert>
+	
+	<!-- update data -->
+	<update id="update" parameterType="com.sof.marketing.system.domain.SystemUser">
+		UPDATE SYS_USER
+		<set>
+			<if test="user_login_name != null and user_login_name != ''">
+				USER_LOGIN_NAME = #{user_login_name},
+			</if>
+			<if test="user_pwd != null and user_pwd != ''">
+				USER_PWD = #{user_pwd},
+			</if>
+			<if test="userName != null and userName != ''">
+				USERNAME = #{userName},
+			</if>
+			<if test="userMobile != null and userMobile != ''">
+				USERMOBILE = #{userMobile},
+			</if>
+			<if test="userSex != null and userSex != ''">
+				USERSEX = #{userSex}
+			</if>
+		</set>
+		<where>
+			USER_ID = #{user_id}
+		</where>
+	</update>
+	
+	<!-- delete data -->
+	<delete id="delete" parameterType="com.sof.marketing.system.domain.SystemUser">
+		DELETE FROM SYS_USER
+		<where>
+			USER_ID = #{user_id}
+		</where>
+	</delete>
+	
+	<!-- select data -->
+	<select id="getSystemUserList" parameterType="com.sof.marketing.system.domain.SystemUser"
+		resultMap="systemUserResultMap">
+		SELECT SU.*, SUR.ROLE_ID, SRR.ROLE_NAME FROM SYS_USER SU
+		LEFT JOIN SYS_USER_ROLE SUR ON SU.USER_ID = SUR.USER_ID
+		LEFT JOIN SYS_ROLE SRR ON SUR.ROLE_ID = SRR.ROLE_ID
+		<where>
+			<if test="user_id != null and user_id != ''">
+				SU.USER_ID = #{user_id}
+			</if>
+			<if test="user_login_name != null and user_login_name != ''">
+				AND SU.USER_LOGIN_NAME = #{user_login_name}
+			</if>
+			<if test="user_pwd != null and user_pwd != ''">
+				AND SU.USER_PWD = #{user_pwd}
+			</if>
+			<if test="userName != null and userName != ''">
+				AND SU.USERNAME LIKE CONCAT('%', #{userName}, '%')
+			</if>
+			<if test="userMobile != null and userMobile != ''">
+				AND SU.USERMOBILE LIKE CONCAT('%', #{userMobile}, '%')
+			</if>
+			<if test="userSex != null and userSex != ''">
+				AND SU.USERSEX = #{userSex}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getSystemUserOneByParameter" parameterType="com.sof.marketing.system.domain.SystemUser"
+		resultMap="systemUserResultMap">
+		SELECT SU.*, SUR.ROLE_ID, SRR.ROLE_NAME FROM SYS_USER SU
+		LEFT JOIN SYS_USER_ROLE SUR ON SU.USER_ID = SUR.USER_ID
+		LEFT JOIN SYS_ROLE SRR ON SUR.ROLE_ID = SRR.ROLE_ID
+		<where>
+			<if test="user_id != null and user_id != ''">
+				SU.USER_ID = #{user_id}
+			</if>
+			<if test="user_login_name != null and user_login_name != ''">
+				AND SU.USER_LOGIN_NAME = #{user_login_name}
+			</if>
+			<if test="user_pwd != null and user_pwd != ''">
+				AND SU.USER_PWD = #{user_pwd}
+			</if>
+			<if test="userName != null and userName != ''">
+				AND SU.USERNAME LIKE CONCAT('%', #{userName}, '%')
+			</if>
+			<if test="userMobile != null and userMobile != ''">
+				AND SU.USERMOBILE LIKE CONCAT('%', #{userMobile}, '%')
+			</if>
+			<if test="userSex != null and userSex != ''">
+				AND SU.USERSEX = #{userSex}
+			</if>
+		</where>
+		limit 1
+	</select>
+	
+	<select id="getSystemUserListCount" parameterType="com.sof.marketing.system.domain.SystemUser"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM SYS_USER SU
+		<where>
+			<if test="user_id != null and user_id != ''">
+				SU.USER_ID = #{user_id}
+			</if>
+			<if test="user_login_name != null and user_login_name != ''">
+				AND SU.USER_LOGIN_NAME = #{user_login_name}
+			</if>
+			<if test="user_pwd != null and user_pwd != ''">
+				AND SU.USER_PWD = #{user_pwd}
+			</if>
+			<if test="userName != null and userName != ''">
+				AND SU.USERNAME LIKE CONCAT('%', #{userName}, '%')
+			</if>
+			<if test="userMobile != null and userMobile != ''">
+				AND SU.USERMOBILE LIKE CONCAT('%', #{userMobile}, '%')
+			</if>
+			<if test="userSex != null and userSex != ''">
+				AND SU.USERSEX = #{userSex}
+			</if>
+		</where>
+	</select>
+	
+   <select id="getOneUser" parameterType="java.lang.String" resultType="com.sof.marketing.system.domain.SystemUser">
+   		SELECT * FROM SYS_USER
+   		<where>
+   			USER_ID = #{user_id}
+   		</where>
+	</select>
+</mapper> 

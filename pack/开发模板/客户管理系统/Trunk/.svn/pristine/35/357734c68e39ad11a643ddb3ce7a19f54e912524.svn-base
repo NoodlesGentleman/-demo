@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.Article">
+	<resultMap type="com.richest.manager.domain.Article"  id="articleResult">
+		<result property="parentId" column="parentId" jdbcType="INTEGER"  javaType="java.lang.Integer"/>
+		<result property="title" column="title" />
+		<result property="description" column="description" />
+		<result property="picUrl" column="picUrl" />
+		<result property="url" column="url" />
+		<result property="order" column="order"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="buildingId" column="buildingId"/>
+	</resultMap>
+	
+	<select id="getArticlesByKeyword" resultMap="articleResult">
+		SELECT A.*,B.projectId as buildingId
+		FROM `rates`.article A
+		INNER JOIN (SELECT id,projectId FROM `rates`.articlekeywords WHERE keywords LIKE '%' #{keyword} '%' and projectId is not null LIMIT 10) B
+		ON A.parentId = B.id
+		WHERE CASE WHEN (SELECT COUNT(id) FROM `rates`.articlekeywords WHERE keywords LIKE '%' #{keyword} '%') > 1 THEN A.`order` = 1 ELSE 1 = 1 END
+		ORDER BY A.parentId,`order` ASC
+	</select>
+	
+	<select id="getArticlesForSuZhou" resultMap="articleResult">
+		SELECT A.*
+		FROM `rates`.article A
+		INNER JOIN (SELECT id FROM `rates`.articlekeywords WHERE type = 2 LIMIT 10) B
+		ON A.parentId = B.id
+		WHERE CASE WHEN (SELECT COUNT(id) FROM `rates`.articlekeywords WHERE type = 2) > 1 THEN A.`order` = 1 ELSE 1 = 1 END
+		ORDER BY A.title DESC limit 10;
+	</select>
+	
+	<select id="getArticlesEsf" resultMap="articleResult">
+		SELECT A.*
+		FROM `rates`.article A
+		INNER JOIN (SELECT id FROM `rates`.articlekeywords WHERE isesf = 1 LIMIT 10) B
+		ON A.parentId = B.id
+		WHERE CASE WHEN (SELECT COUNT(id) FROM `rates`.articlekeywords WHERE isesf = 1) > 1 THEN A.`order` = 1 ELSE 1 = 1 END
+		ORDER BY A.title DESC limit 9;
+	</select>
+	
+	<select id="getArticleByTicket" resultMap="articleResult">
+		SELECT A.*
+		FROM `rates`.article A
+		WHERE A.parentid = (SELECT projectId FROM `rates`.sales_wechat_info WHERE ticket = #{ticket} LIMIT 1)
+		ORDER BY A.`order` ASC
+	</select>
+	
+	<select id="getDefaultArticles" resultMap="articleResult">
+		SELECT A.*,B.buildingId
+		FROM `rates`.article A
+		INNER JOIN `rates`.articledefault B ON A.parentId = B.projectId WHERE `order` = 1;
+	</select>
+	
+	<select id="getTopArticles" resultMap="articleResult">
+		SELECT A.*,B.buildingId
+		FROM (
+			SELECT b.projectId,a.buildingId,COUNT(*) as count FROM gdas_develop.v_t_room_rate a 
+			INNER JOIN rates.articledefault b ON a.buildingId = b.buildingId
+			INNER JOIN gdas_develop.v_t_room_rate_maxdate c ON a.buildingId = c.buildingid 
+			WHERE a.fixtureDate BETWEEN c.min_date AND c.max_date
+			GROUP BY a.buildingId ORDER BY count desc
+		) B
+		INNER JOIN 
+		 `rates`.article A
+		  ON A.parentId = B.projectId WHERE `order` = 1 ORDER BY B.count desc;
+	</select>
+	
+	<select id="getDRCArticles" resultMap="articleResult">
+		SELECT A.*
+		FROM `rates`.article A
+		 WHERE parentId = 9999 ORDER BY `order`;
+	</select>
+	
+	<select id="getSubscribeArticleByTicket" resultMap="articleResult">
+		SELECT A.*
+		FROM `rates`.article A
+		WHERE A.parentid = (SELECT projectId FROM `rates`.sales_wechat_info WHERE ticket = #{ticket} LIMIT 1)
+		AND A.`order` = 1
+		UNION ALL
+		(SELECT B.*
+		FROM `rates`.article B
+		WHERE CASE WHEN (SELECT COUNT(compete_key_id) FROM `rates`.articlecompetes WHERE article_key_id = (SELECT projectId FROM `rates`.sales_wechat_info WHERE ticket = #{ticket} LIMIT 1)) > 1
+		THEN
+		parentid IN(SELECT compete_key_id FROM `rates`.articlecompetes WHERE article_key_id = (SELECT projectId FROM `rates`.sales_wechat_info WHERE ticket = #{ticket} LIMIT 1))
+		AND B.`order` = 1
+		ELSE B.parentid = (SELECT projectId FROM `rates`.sales_wechat_info WHERE ticket = #{ticket} LIMIT 1)
+		AND B.`order` > 1 END
+		ORDER BY B.`order`);
+	</select>
+	
+	<select id="getSalesMp" resultType="String">
+		SELECT mediaId FROM `rates`.sales_wechat_info WHERE openid = #{openid} LIMIT 1;
+	</select>
+</mapper>

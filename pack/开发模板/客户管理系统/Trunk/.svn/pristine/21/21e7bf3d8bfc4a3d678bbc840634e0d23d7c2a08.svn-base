@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.Process">
+	<resultMap type="com.richest.manager.domain.Process"  id="processresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="campaignId" column="campaignId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="event_code" column="event_code" />
+		<result property="event_name" column="event_name" />
+		<result property="eventTime" column="eventTime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="result" column="result" />
+		<result property="roomNum" column="roomNum" />
+		<result property="commission" column="commission" jdbcType="DECIMAL"  javaType="java.math.BigDecimal"/>
+		<result property="isrefund" column="isrefund"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="contractNo" column="contractNo" />
+		<result property="signTime" column="signTime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="isRequest" column="isRequest"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="parentId" column="parentId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="sort" column="sort" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<select id="addProcessByCampaignId" resultMap="processresult">
+		INSERT INTO `manager`.`process` (`campaignId`, `event_code`, `eventTime`, `sort`, `parentId`)
+		SELECT #{campaignId}, A.`code`,B.createTime, sort, remark 
+		FROM basicdic A 
+		LEFT OUTER JOIN campaign B 
+		ON A.`code` = 'BBSJ' AND B.id = #{campaignId}
+		WHERE A.`type` = 'event_type' AND A.isDel = 0;
+	</select>
+	
+	<insert id="save" parameterType="Process" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `manager`.`process` (`campaignId`, `event_code`, `eventTime`, `result`, `commission`) 
+		VALUES (#{campaignId}, #{event_code}, #{eventTime}, #{result}, #{commission});
+	</insert>
+	
+	<insert id="addRgProcesses" parameterType="java.lang.Integer">
+		INSERT INTO `manager`.`process` (`campaignId`, `event_code`, `sort`, `parentId`)
+		SELECT #{campaignId}, `code`, (sort - 3 + (SELECT MAX(sort) FROM `manager`.process WHERE campaignId = #{campaignId})) AS sort, remark 
+		FROM `manager`.basicdic A 
+		WHERE A.`type` = 'event_type' AND A.isDel = 0 AND A.remark = 0;
+	</insert>
+	
+	<update id="update" parameterType="Process">
+		UPDATE `manager`.`process` SET 
+		`eventTime` = #{eventTime}, 
+		`roomNum` = #{roomNum},
+		`commission` = IF(#{commission},#{commission},`commission`),
+		`isrefund` = #{isrefund},
+		`contractNo` = #{contractNo},
+		`signTime` = #{signTime},
+		`isRequest` = IF(#{isRequest},#{isRequest},`isRequest`),
+		`result` = #{result}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="toEndrgProcesses" parameterType="java.lang.Integer">
+		UPDATE `manager`.`process` SET `isrefund`= 1
+		WHERE parentId = #{parentId};
+	</update>
+	
+	<update id="seteffectivetime" parameterType="Process">
+		UPDATE `manager`.`process` SET `eventTime`= NOW()
+		WHERE campaignId = #{campaignId} AND `event_code` = #{event_code}
+	</update>
+	
+	<update id="relationprocess" parameterType="java.lang.Integer">
+		UPDATE `manager`.`process` A, (SELECT C.* FROM `manager`.`process` C WHERE C.campaignId = #{campaignId} AND C.parentId = 0 AND C.event_code = 'ETRG') B 
+		SET A.parentId = B.id
+		WHERE A.campaignId = B.campaignId AND A.campaignId = #{campaignId} AND A.parentId = 0;
+	</update>
+	
+	<select id="getProcessByCampaignId" resultMap="processresult">
+		SELECT A.*,B.`name` AS event_name FROM `manager`.`process` A LEFT OUTER JOIN basicdic B ON A.event_code = B.`code`
+		WHERE A.campaignId = #{campaignId} ORDER BY A.`sort`
+	</select>
+</mapper>

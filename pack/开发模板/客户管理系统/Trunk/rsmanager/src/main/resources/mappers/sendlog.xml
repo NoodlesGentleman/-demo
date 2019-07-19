@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.SendLog">
+	<resultMap type="com.richest.manager.domain.SendLog"  id="sendlogresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="mobile" column="mobile"/>
+		<result property="checkcode" column="checkcode"/>
+		<result property="fromclass" column="fromclass"/>
+		<result property="method" column="method"/>
+		<result property="type" column="type"/>
+		<result property="buildingId" column="buildingId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="userId" column="userId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="createTime" column="createTime" jdbcType="TIMESTAMP"  javaType="java.util.Date"/>
+	</resultMap>
+	
+	<insert id="save" parameterType="SendLog" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `manager`.`send_log` (`mobile`, `checkcode`, `fromclass`, `method`, `type`, `buildingId`, `userId`) 
+		VALUES (#{mobile}, #{checkcode}, #{fromclass}, #{method}, #{type}, #{buildingId}, #{userId});
+	</insert>
+	
+	<select id="getLogByMobile" resultMap="sendlogresult">
+		SELECT * FROM `manager`.`send_log` 
+		WHERE mobile = #{mobile} 
+		AND type = #{type} 
+		AND buildingId = #{buildingId}
+		AND userId = #{userId}
+		AND createTime &gt; DATE_ADD(NOW(), INTERVAL -1 HOUR)
+		ORDER BY createTime DESC LIMIT 0,1;
+	</select>
+</mapper>

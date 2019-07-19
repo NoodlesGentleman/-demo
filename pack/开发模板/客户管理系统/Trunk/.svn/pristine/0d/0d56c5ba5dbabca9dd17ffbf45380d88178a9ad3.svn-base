@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sof.marketing.system.domain.SystemNavigation">
+
+	<resultMap id="systemNavigationResultMap" type="com.sof.marketing.system.domain.SystemNavigation">
+		<result property="navigationId" column="navigationId" />
+		<result property="parentId" column="parentId" />
+		<result property="level" column="level" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="title" column="title" />
+		<result property="link" column="link" />
+		<result property="loadType" column="loadType" jdbcType="TINYINT"/>
+		<result property="description" column="description" />
+		<result property="icon" column="icon" />
+		<result property="iconBg" column="iconBg" />
+		<result property="sortOrder" column="sortOrder" jdbcType="INTEGER"/>
+		<result property="status" column="status" jdbcType="TINYINT"/>
+		<result property="ctime" column="ctime" />
+		<result property="mtime" column="mtime" />
+		<result property="user_id" column="user_id"/>
+	</resultMap>
+
+	<!-- insert data -->
+	<insert id="save" parameterType="com.sof.marketing.system.domain.SystemNavigation">
+		INSERT INTO SYSTEM_NAVIGATION(NAVIGATIONID, PARENTID, LEVEL, TITLE, LINK, LOADTYPE,
+			DESCRIPTION, ICON, ICONBG, SORTORDER, STATUS, CTIME, MTIME
+	   	)
+		VALUES (#{navigationId}, #{parentId}, #{level}, #{title}, #{link}, #{loadType},
+			#{description}, #{icon}, #{iconBg}, #{sortOrder}, #{status}, #{ctime}, #{mtime}
+		)
+	</insert>
+	
+	<!-- update data -->
+	<update id="update" parameterType="com.sof.marketing.system.domain.SystemNavigation">
+	   UPDATE SYSTEM_NAVIGATION
+   		<set>
+			<if test="parentId != null and parentId != ''">
+				PARENTID = #{parentId},
+			</if>
+			<if test="level != null">
+				LEVEL = #{level},
+			</if>
+			<if test="title != null and title != ''">
+				TITLE = #{title},
+			</if>
+			<if test="link != null and link != ''">
+				LINK = #{link},
+			</if>
+			<if test="loadType != null">
+				LOADTYPE = #{loadType},
+			</if>
+			<if test="description != null and description != ''">
+				DESCRIPTION = #{description},
+			</if>
+			<if test="icon != null and icon != ''">
+				ICON = #{icon},
+			</if>
+			<if test="iconBg != null and iconBg != ''">
+				ICONBG = #{iconBg},
+			</if>
+			<if test="sortOrder != null">
+				SORTORDER = #{sortOrder},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime},
+			</if>
+			<if test="mtime != null">
+				MTIME = #{mtime}
+			</if>
+		</set>
+		<where>
+			<if test="navigationId != null and navigationId != ''">
+				NAVIGATIONID = #{navigationId}
+			</if>
+		</where>
+	</update>
+
+	<!-- delete data -->
+	<delete id="delete" parameterType="com.sof.marketing.system.domain.SystemNavigation">
+	   DELETE FROM SYSTEM_NAVIGATION 
+	   <where>
+	   		NAVIGATIONID = #{navigationId}
+	   </where>
+	</delete>
+
+	<!-- select data -->
+	<select id="getNavigationList" parameterType="com.sof.marketing.system.domain.SystemNavigation"
+		resultMap="systemNavigationResultMap">
+	   SELECT DISTINCT NV.NAVIGATIONID,
+	   NV.PARENTID,
+       NV.LEVEL, NV.TITLE, NV.LINK,
+	   NV.LOADTYPE, NV.DESCRIPTION, NV.ICON, NV.ICONBG,
+	   NV.SORTORDER, NV.STATUS, NV.CTIME, NV.MTIME
+	   FROM SYSTEM_NAVIGATION NV
+	   LEFT OUTER JOIN SYS_ROLE_NAV RN ON NV.NAVIGATIONID = RN.SYS_NAV_ID
+	   LEFT OUTER JOIN SYS_USER_ROLE SR ON RN.ROLE_ID = SR.ROLE_ID
+	   <where>
+	     <if test="navigationId != null and navigationId != ''">
+	        NAVIGATIONID = #{navigationId}
+	     </if>
+	     <if test="parentId != null and parentId != ''">
+	        AND PARENTID = #{parentId}
+	     </if>
+	     <if test="level != null and level != ''">
+	        AND LEVEL = #{level}
+	     </if>
+	     <if test="title != null and title != ''">
+	        AND TITLE = #{title}
+	     </if>
+	     <if test="link != null and link != ''">
+	        AND LINK = #{link}
+	     </if>
+	     <if test="loadType != null">
+	        AND LOADTYPE = #{loadType}
+	     </if>
+	     <if test="description != null and description != ''">
+	        AND DESCRIPTION = #{description}
+	     </if>
+	     <if test="icon != null and icon != ''">
+	        AND ICON = #{icon}
+	     </if>
+	     <if test="iconBg != null and iconBg != ''">
+	        AND ICONBG = #{iconBg}
+	     </if>
+	     <if test="sortOrder != null">
+	        AND SORTORDER = #{sortOrder}
+	     </if>
+	     <if test="status != null">
+	        AND STATUS = #{status}
+	     </if>
+	     <if test="ctime != null">
+	        AND CTIME = #{ctime}
+	     </if>
+	     <if test="mtime != null">
+	        AND MTIME = #{mtime}
+	     </if>
+	     <if test="user_id != null and user_id != ''">
+	     	and SR.USER_ID = #{user_id}
+	     </if>
+	   </where>
+	   ORDER BY SORTORDER, NAVIGATIONID
+	</select>
+	
+	<select id="getNavigationListCount" parameterType="com.sof.marketing.system.domain.SystemNavigation"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM (
+			SELECT DISTINCT NV.*
+			FROM SYSTEM_NAVIGATION NV
+			LEFT OUTER JOIN SYS_ROLE_NAV RN ON NV.NAVIGATIONID = RN.SYS_NAV_ID
+			LEFT OUTER JOIN SYS_USER_ROLE SR ON RN.ROLE_ID = SR.ROLE_ID
+			<where>
+			  <if test="navigationId != null and navigationId != ''">
+			     NAVIGATIONID = #{navigationId}
+			  </if>
+			  <if test="parentId != null and parentId != ''">
+			     AND PARENTID = #{parentId}
+			  </if>
+			  <if test="level != null and level != ''">
+			     AND LEVEL = #{level}
+			  </if>
+			  <if test="title != null and title != ''">
+			     AND TITLE = #{title}
+			  </if>
+			  <if test="link != null and link != ''">
+			     AND LINK = #{link}
+			  </if>
+			  <if test="loadType != null">
+			     AND LOADTYPE = #{loadType}
+			  </if>
+			  <if test="description != null and description != ''">
+			     AND DESCRIPTION = #{description}
+			  </if>
+			  <if test="icon != null and icon != ''">
+			     AND ICON = #{icon}
+			  </if>
+			  <if test="iconBg != null and iconBg != ''">
+			     AND ICONBG = #{iconBg}
+			  </if>
+			  <if test="sortOrder != null">
+			     AND SORTORDER = #{sortOrder}
+			  </if>
+			  <if test="status != null">
+			     AND STATUS = #{status}
+			  </if>
+			  <if test="ctime != null">
+			     AND CTIME = #{ctime}
+			  </if>
+			  <if test="mtime != null">
+			     AND MTIME = #{mtime}
+			  </if>
+			  <if test="user_id != null and user_id != ''">
+			  	AND SR.USER_ID = #{user_id}
+			  </if>
+			</where>
+		) tmp
+	</select>
+	
+	<select id="selectAllNavByParentNavId" resultMap="systemNavigationResultMap">
+	   SELECT NAVIGATIONID, PARENTID, LEVEL, TITLE, LINK,
+	   LOADTYPE, DESCRIPTION, ICON, ICONBG,
+	   SORTORDER, STATUS, CTIME, MTIME
+	   FROM SYSTEM_NAVIGATION
+	   <where>
+		   	<if test="parentNavId != null and parentNavId != ''">
+				PARENTID = #{parentNavId}
+			</if>
+	   </where>
+	   ORDER BY SORTORDER
+	</select>
+	
+	<select id="selectOne" resultMap="systemNavigationResultMap">
+		SELECT NAVIGATIONID, PARENTID, LEVEL, TITLE, LINK,
+	    LOADTYPE, DESCRIPTION, ICON, ICONBG,
+	    SORTORDER, STATUS, CTIME, MTIME
+	    FROM SYSTEM_NAVIGATION
+		<where>
+			NAVIGATIONID = #{navId}
+		</where>
+	</select>
+	
+	<select id="selectParentNav" parameterType="com.sof.marketing.system.domain.SystemNavigation"
+		resultMap="systemNavigationResultMap">
+	 	SELECT NAVIGATIONID, PARENTID, LEVEL, TITLE, LINK,
+	    LOADTYPE, DESCRIPTION, ICON, ICONBG,
+	    SORTORDER, STATUS, CTIME, MTIME
+	    FROM SYSTEM_NAVIGATION
+		<where>
+			PARENTID = #{parentId}
+		</where>
+	</select>
+</mapper> 

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.sof.marketing.model.RedBagObj" >
+  <resultMap id="BaseResultMap" type="com.sof.marketing.model.RedBagObj" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="register_life" property="registerLife" jdbcType="INTEGER" />
+    <result column="count" property="count" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, phone, openid, create_time, register_life, `count`
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from red_bag_obj
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="save" parameterType="com.sof.marketing.model.RedBagObj" useGeneratedKeys="true" keyProperty="id" >
+    insert into red_bag_obj (username, phone, openid, 
+      create_time, register_life, `count`
+      )
+    values (#{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{registerLife,jdbcType=INTEGER}, #{count,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sof.marketing.model.RedBagObj" useGeneratedKeys="true" keyProperty="id" >
+    insert into red_bag_obj
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      username,
+      phone,
+      openid,
+      create_time,
+      register_life,
+      `count`,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{username,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR},
+      #{openid,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{registerLife,jdbcType=INTEGER},
+      #{count,jdbcType=DECIMAL},
+    </trim>
+  </insert>
+  
+  <select id="getListByCondition" resultMap="BaseResultMap" parameterType="com.sof.marketing.model.RedBagObj" >
+    select 
+    <include refid="Base_Column_List" />
+    from red_bag_obj
+    <where>
+      <if test="id != null and id != ''" >
+        AND id like '%' #{id} '%'
+      </if>
+      <if test="username != null and username != ''" >
+        AND username like '%' #{username} '%'
+      </if>
+      <if test="phone != null and phone != ''" >
+        AND phone like '%' #{phone} '%'
+      </if>
+      <if test="openid != null and openid != ''" >
+        AND openid = #{openid}
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        AND create_time = #{createTime}
+      </if>
+      <if test="registerLife != null and registerLife != ''" >
+        AND register_life = #{registerLife}
+      </if>
+      <if test="count != null" >
+        AND count = #{count}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+  <select id="getCountByCondition" resultType="java.lang.Integer" parameterType="com.sof.marketing.model.RedBagObj">
+	SELECT COUNT(id)
+	from red_bag_obj
+    <where>
+      <if test="id != null and id != ''" >
+        AND id like '%' #{id} '%'
+      </if>
+      <if test="username != null and username != ''" >
+        AND username like '%' #{username} '%'
+      </if>
+      <if test="phone != null and phone != ''" >
+        AND phone like '%' #{phone} '%'
+      </if>
+      <if test="openid != null and openid != ''" >
+        AND openid = #{openid}
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        AND create_time = #{createTime}
+      </if>
+      <if test="registerLife != null and registerLife != ''" >
+        AND register_life = #{registerLife}
+      </if>
+      <if test="count != null" >
+        AND count = #{count}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,23 @@
+log4j.rootLogger=debug,Console,infoFile,errorFile
+
+#Console
+log4j.appender.Console=org.apache.log4j.ConsoleAppender
+log4j.appender.Console.layout=org.apache.log4j.PatternLayout
+log4j.appender.Console.layout.ConversionPattern=%d %-5p [%c] - %m%n
+
+log4j.appender.infoFile = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.infoFile.File = /services/weblogs/middleware/log.log
+log4j.appender.infoFile.Append = true
+log4j.appender.infoFile.Threshold = INFO
+log4j.appender.infoFile.layout = org.apache.log4j.PatternLayout
+log4j.appender.infoFile.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} -  %m%n
+
+log4j.appender.errorFile = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.errorFile.File = /services/weblogs/middleware/error.log
+log4j.appender.errorFile.Append = true
+log4j.appender.errorFile.Threshold = ERROR
+log4j.appender.errorFile.layout = org.apache.log4j.PatternLayout
+log4j.appender.errorFile.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} - %m%n
+
+
+

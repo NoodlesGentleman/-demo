@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.Building">
+	<resultMap type="com.richest.manager.domain.Building"  id="buildingresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+		<result property="imgUrl" column="imgUrl" />
+		<result property="imgLink" column="imgLink" />
+		<result property="thumbnailUrl" column="thumbnailUrl" />
+		<result property="baseInfo" column="baseInfo" />
+	</resultMap>
+	
+	<select id="getBuildings" resultMap="buildingresult">
+		SELECT * FROM `manager`.building WHERE isDel = 0;
+	</select>
+	
+	<select id="getBuildingsByCompanyId" resultMap="buildingresult">
+		SELECT * FROM `manager`.building WHERE isDel = 0 AND id NOT IN (SELECT buildingId FROM `manager`.blackcompany WHERE companyId = #{companyId});
+	</select>
+	
+	<select id="getHotBuildings" resultMap="buildingresult">
+		SELECT A.*,B.baobeizl FROM `manager`.building A INNER JOIN v_statistics B
+		ON A.id = B.id
+		WHERE A.isDel = 0 AND A.id NOT IN (SELECT buildingId FROM `manager`.blackcompany WHERE companyId = #{companyId})
+		ORDER BY B.baobeizl DESC LIMIT 4;
+	</select>
+	
+	<select id="getBuildingById" resultMap="buildingresult">
+		SELECT * FROM `manager`.building WHERE id = #{id};
+	</select>
+</mapper>

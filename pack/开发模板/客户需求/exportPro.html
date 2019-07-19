@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.3.3/vue.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{message}}
+  </div>
+  <script>
+    var app2 = new Vue({
+        el: '#app',
+        data: {
+          message: '页面加载于 ' + new Date().toLocaleString()
+        }
+      })
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.Saler">
+	<resultMap type="com.richest.manager.domain.Saler"  id="salerresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+		<result property="companyId" column="companyId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="openId" column="openId" />
+	</resultMap>
+	
+	<select id="getSalers" resultMap="salerresult">
+		SELECT * FROM saler;
+	</select>
+	
+	<select id="getSalerOpenidsByBuilidngId" resultMap="salerresult">
+		SELECT A.*,B.openid FROM saler A INNER JOIN `user` B ON A.id = B.id AND B.type_code = 'SALER' WHERE A.companyId = #{companyId};
+	</select>
+</mapper>

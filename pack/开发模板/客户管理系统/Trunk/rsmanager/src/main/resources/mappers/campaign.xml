@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.Campaign">
+	<resultMap type="com.richest.manager.domain.Campaign"  id="campaignresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="code" column="code" />
+		<result property="userId" column="userId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="customerId" column="customerId" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="customermobile" column="customermobile" />
+		<result property="buildingId" column="buildingId" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="Property_code" column="Property_code" />
+		<result property="receiveId" column="receiveId" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="isAccompany" column="isAccompany" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="salerId" column="salerId" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="appointmentTime" column="appointmentTime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="createTime" column="createTime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="status" column="status" />
+		<result property="protectDate" column="protectDate" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="checkcode" column="checkcode" />
+	</resultMap>
+
+	<resultMap type="com.richest.manager.dto.CampaignDto"  id="campaigndtoresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="code" column="code" />
+		<result property="userId" column="userId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="userName" column="userName" />
+		<result property="userMobile" column="userMobile" />
+		<result property="userCompany" column="userCompany" />
+		<result property="cardId" column="cardId" />
+		<result property="type_code" column="type_code" />
+		<result property="customerId" column="customerId" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="customerName" column="customerName" />
+		<result property="customermobile" column="customermobile" />
+		<result property="buildingId" column="buildingId" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="buildingName" column="buildingName" />
+		<result property="Property_code" column="Property_code" />
+		<result property="Property_name" column="Property_name" />
+		<result property="receiveId" column="receiveId" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="receiveName" column="receiveName" />
+		<result property="isAccompany" column="isAccompany" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="salerId" column="salerId" jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="salerName" column="salerName" />
+		<result property="appointmentTime" column="appointmentTime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="createTime" column="createTime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="status" column="status" />
+		<result property="status_value" column="status_value" />
+		<result property="protectDate" column="protectDate" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="checkcode" column="checkcode" />
+		<collection property="processlist" ofType="com.richest.manager.domain.Process" column="campaignId">
+            <result column="processid" property="id" jdbcType="INTEGER"  javaType="java.lang.Integer"/>  
+            <result column="campaignId" property="campaignId" jdbcType="INTEGER"  javaType="java.lang.Integer"/>  
+            <result column="event_code" property="event_code"/>  
+            <result column="event_name" property="event_name"/> 
+            <result column="eventTime" property="eventTime" jdbcType="TIMESTAMP"  javaType="java.util.Date"/>  
+            <result column="result" property="result"/>  
+			<result property="roomNum" column="roomNum" />
+			<result property="commission" column="commission" jdbcType="DECIMAL"  javaType="java.math.BigDecimal"/>
+			<result property="isrefund" column="isrefund"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+			<result property="contractNo" column="contractNo" />
+			<result property="signTime" column="signTime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+			<result property="isRequest" column="isRequest"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+			<result property="parentId" column="parentId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+            <result column="sort" property="sort" jdbcType="INTEGER"  javaType="java.lang.Integer"/> 
+        </collection> 
+	</resultMap>
+
+	<resultMap type="com.richest.manager.dto.ProjectStatisticsDto"  id="projectStatisticsresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+		<result property="baobeizl" column="baobeizl"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="baobeirs" column="baobeirs"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="youxiaozl" column="youxiaozl"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="zifangzl" column="zifangzl"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="baobeild" column="baobeild"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="yuyuezl" column="yuyuezl"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="yuyueld" column="yuyueld"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="yuyueundjzl" column="yuyueundjzl"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="yuyueundjld" column="yuyueundjld"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="djzl" column="djzl"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="djld" column="djld"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<insert id="save" parameterType="Campaign" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `manager`.`campaign` (`code`, `userId`, `customerId`, `customermobile`, `buildingId`, `Property_code`, `receiveId`, `isAccompany`, `appointmentTime`) 
+		VALUES (#{code}, #{userId}, #{customerId}, #{customermobile}, #{buildingId}, #{Property_code}, #{receiveId}, #{isAccompany}, (SELECT DATE_ADD(NOW(), INTERVAL protectTime MINUTE) FROM building WHERE id = #{buildingId} LIMIT 1));
+	</insert>
+	
+	<update id="update" parameterType="Campaign">
+		UPDATE `campaign` SET 
+		salerId = IF(#{salerId},#{salerId},salerId),
+		<!-- appointmentTime = IFNULL(#{appointmentTime},appointmentTime), -->
+		status = IFNULL(#{status},status)
+		<!-- protectDate = IF(#{protectDate},#{protectDate},IF(#{status} = 'QRYX',(SELECT DATE_ADD(NOW(), INTERVAL protectday DAY) FROM building WHERE id = `campaign`.buildingId LIMIT 1),protectDate)) -->
+		WHERE id = #{id};
+	</update>
+	
+	<update id="setcheckcode">
+		UPDATE `campaign` SET 
+		checkcode = #{checkcode}
+		WHERE id = #{id};
+	</update>
+	
+	<update id="setprotectdate">
+		UPDATE `campaign` SET 
+		protectDate = (SELECT DATE_ADD(NOW(), INTERVAL protectday DAY) FROM building WHERE id = `campaign`.buildingId LIMIT 1)
+		WHERE id = #{id};
+	</update>
+	
+	<select id="checkInprotect" resultType="java.lang.Integer">
+		SELECT 
+		((SELECT COUNT(id) FROM campaign 
+		WHERE buildingId = (SELECT buildingId FROM campaign WHERE id = #{id})
+		AND customermobile = (SELECT customermobile FROM campaign WHERE id = #{id})
+		AND id &lt;&gt; #{id}
+		AND protectDate IS NOT NULL
+		AND NOW() &lt; protectDate) +
+		(SELECT COUNT(A.id) FROM campaign A INNER JOIN naturalvisit B ON A.buildingId = B.buildingId AND A.customermobile = B.mobile
+		WHERE A.id = #{id} AND NOW() &lt; B.protectDate)) isInProtect;
+	</select>
+	
+	<select id="getProjectStatisticsById" resultMap="projectStatisticsresult">
+		SELECT * FROM v_statistics WHERE id = (SELECT companyId FROM saler WHERE id = #{id});
+	</select>
+	
+	<select id="getCampaignsByBuildingId" resultMap="campaigndtoresult">
+		SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value,
+		G.id AS processid,
+		G.campaignId,
+		G.eventTime,
+		G.event_code,
+		H.`name` AS event_name,
+		G.result,
+		G.roomNum,
+		G.commission,
+		G.isrefund,
+		G.contractNo,
+		G.signTime,
+		G.isRequest,
+		G.parentId,
+		G.sort
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		LEFT OUTER JOIN
+		saler E
+		ON
+		A.salerId = E.id
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT JOIN
+		process G
+		ON
+		G.campaignId = A.id
+		INNER JOIN
+		basicdic H
+		ON
+		G.event_code = H.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		WHERE A.buildingId = #{id}
+		AND IFNULL(A.checkcode,'') &lt;&gt; ''
+		AND A.protectDate IS NULL
+		ORDER BY G.sort,G.eventTime DESC;
+	</select>
+	
+	<select id="getCampaignsByCustomerId" resultMap="campaigndtoresult">
+		SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value,
+		G.id AS processid,
+		G.campaignId,
+		G.eventTime,
+		G.event_code,
+		H.`name` AS event_name,
+		G.result,
+		G.roomNum,
+		G.commission,
+		G.isrefund,
+		G.contractNo,
+		G.signTime,
+		G.isRequest,
+		G.parentId,
+		G.sort
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		LEFT OUTER JOIN
+		saler E
+		ON
+		A.salerId = E.id
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT JOIN
+		process G
+		ON
+		G.campaignId = A.id
+		INNER JOIN
+		basicdic H
+		ON
+		G.event_code = H.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		WHERE A.customerId = #{customerId}
+		ORDER BY G.sort,A.createTime DESC;
+	</select>
+	
+	<select id="searchCampaign" resultMap="campaigndtoresult">
+		SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		J.cardId,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value,
+		G.id AS processid,
+		G.campaignId,
+		G.eventTime,
+		G.event_code,
+		H.`name` AS event_name,
+		G.result,
+		G.roomNum,
+		G.commission,
+		G.isrefund,
+		G.contractNo,
+		G.signTime,
+		G.isRequest,
+		G.parentId,
+		G.sort
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		LEFT OUTER JOIN
+		saler E
+		ON
+		A.salerId = E.id
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT JOIN
+		process G
+		ON
+		G.campaignId = A.id
+		INNER JOIN
+		basicdic H
+		ON
+		G.event_code = H.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		WHERE
+		(A.`code` LIKE '%' #{data} '%'
+		OR
+		I.mobile LIKE '%' #{data} '%'
+		OR
+		I.`name` LIKE '%' #{data} '%'
+		OR
+		J.`name` LIKE '%' #{data} '%'
+		OR
+		J.mobile LIKE '%' #{data} '%'
+		OR
+		J.cardId LIKE '%' #{data} '%'
+		OR
+		B.`name` LIKE '%' #{data} '%'
+		OR
+		E.`name` LIKE '%' #{data} '%')
+		ORDER BY G.sort,A.createTime DESC;
+	</select>
+	
+	<select id="searchCampaignBySaler" resultMap="campaigndtoresult">
+		(SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		J.cardId,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value,
+		G.id AS processid,
+		G.campaignId,
+		G.eventTime,
+		G.event_code,
+		H.`name` AS event_name,
+		G.result,
+		G.roomNum,
+		G.commission,
+		G.isrefund,
+		G.contractNo,
+		G.signTime,
+		G.isRequest,
+		G.parentId,
+		G.sort
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		INNER JOIN
+		saler E
+		ON
+		A.buildingId = E.companyId
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT JOIN
+		process G
+		ON
+		G.campaignId = A.id
+		INNER JOIN
+		basicdic H
+		ON
+		G.event_code = H.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		WHERE
+		E.id = #{id}
+		AND A.code = #{data}
+		ORDER BY G.sort,A.createTime DESC)
+		UNION ALL
+		(SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		J.cardId,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value,
+		G.id AS processid,
+		G.campaignId,
+		G.eventTime,
+		G.event_code,
+		H.`name` AS event_name,
+		G.result,
+		G.roomNum,
+		G.commission,
+		G.isrefund,
+		G.contractNo,
+		G.signTime,
+		G.isRequest,
+		G.parentId,
+		G.sort
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		INNER JOIN
+		saler E
+		ON
+		A.buildingId = E.companyId
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT JOIN
+		process G
+		ON
+		G.campaignId = A.id
+		INNER JOIN
+		basicdic H
+		ON
+		G.event_code = H.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		WHERE
+		(A.`code` LIKE '%' #{data} '%'
+		OR
+		I.mobile LIKE '%' #{data} '%'
+		OR
+		I.`name` LIKE '%' #{data} '%'
+		OR
+		A.`checkcode` LIKE '%' #{data} '%')
+		AND
+		E.id = #{id}
+		ORDER BY G.sort,A.createTime DESC);
+	</select>
+	
+	<select id="getCampaignById" resultMap="campaigndtoresult">
+		SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		J.cardId,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value,
+		G.id AS processid,
+		G.campaignId,
+		G.eventTime,
+		G.event_code,
+		H.`name` AS event_name,
+		G.result,
+		G.roomNum,
+		G.commission,
+		G.isrefund,
+		G.contractNo,
+		G.signTime,
+		G.isRequest,
+		G.parentId,
+		G.sort
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		LEFT OUTER JOIN
+		saler E
+		ON
+		A.salerId = E.id
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT JOIN
+		process G
+		ON
+		G.campaignId = A.id
+		INNER JOIN
+		basicdic H
+		ON
+		G.event_code = H.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		WHERE
+		A.id = #{id}
+		ORDER BY G.sort;
+	</select>
+	
+	<select id="searchDefault" resultMap="campaigndtoresult">
+		SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		J.cardId,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value,
+		G.id AS processid,
+		G.campaignId,
+		G.eventTime,
+		G.event_code,
+		H.`name` AS event_name,
+		G.result,
+		G.roomNum,
+		G.commission,
+		G.isrefund,
+		G.contractNo,
+		G.signTime,
+		G.isRequest,
+		G.parentId,
+		G.sort
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		LEFT OUTER JOIN
+		saler E
+		ON
+		A.salerId = E.id
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT JOIN
+		process G
+		ON
+		G.campaignId = A.id
+		INNER JOIN
+		basicdic H
+		ON
+		G.event_code = H.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		ORDER BY G.sort,A.createTime DESC;
+	</select>
+	
+	<select id="searchDefaultBySaler" resultMap="campaigndtoresult">
+		SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		J.cardId,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		INNER JOIN
+		saler E
+		ON
+		A.buildingId = E.companyId
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		WHERE
+		E.id = #{id}
+		ORDER BY A.createTime DESC
+		LIMIT #{page},20;
+		<!-- SELECT A.*,
+		J.`name` AS userName,
+		J.mobile AS userMobile,
+		J.company AS userCompany,
+		J.cardId,
+		I.`name` AS customerName,
+		B.`name` AS buildingName,
+		C.`name` AS Property_name,
+		D.`name` AS receiveName,
+		E.`name` AS salerName,
+		F.`name` AS status_value,
+		G.id AS processid,
+		G.campaignId,
+		G.eventTime,
+		G.event_code,
+		H.`name` AS event_name,
+		G.result,
+		G.roomNum,
+		G.commission,
+		G.isrefund,
+		G.contractNo,
+		G.signTime,
+		G.isRequest,
+		G.parentId,
+		G.sort
+		FROM campaign A
+		INNER JOIN
+		building B
+		ON
+		A.buildingId = B.id
+		LEFT OUTER JOIN
+		basicdic C
+		ON
+		A.Property_code = C.`code`
+		LEFT OUTER JOIN
+		receivecompany D
+		ON
+		A.receiveId = D.id
+		INNER JOIN
+		saler E
+		ON
+		A.buildingId = E.companyId
+		INNER JOIN
+		basicdic F
+		ON
+		A.`status` = F.`code`
+		LEFT JOIN
+		process G
+		ON
+		G.campaignId = A.id
+		INNER JOIN
+		basicdic H
+		ON
+		G.event_code = H.`code`
+		LEFT OUTER JOIN
+		customer I
+		ON
+		A.customerId = I.id
+		LEFT OUTER JOIN
+		`user` J
+		ON
+		A.userId = J.id
+		WHERE
+		E.id = #{id}
+		AND
+		DATE(A.createTime) = DATE(NOW())
+		ORDER BY G.sort,A.createTime DESC; -->
+	</select>
+</mapper>

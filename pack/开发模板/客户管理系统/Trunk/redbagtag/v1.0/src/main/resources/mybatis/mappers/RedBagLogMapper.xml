@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.sof.marketing.model.RedBagLog">
+	<resultMap id="BaseResultMap"
+		type="com.sof.marketing.model.RedBagLog">
+		<result column="openid" property="openid" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount"
+			jdbcType="INTEGER" />
+		<result column="return_code" property="returnCode"
+			jdbcType="VARCHAR" />
+		<result column="return_msg" property="returnMsg"
+			jdbcType="VARCHAR" />
+		<result column="err_code" property="errCode" jdbcType="VARCHAR" />
+		<result column="mch_billno" property="mchBillno"
+			jdbcType="VARCHAR" />
+		<result column="sent_time" property="sentTime"
+			jdbcType="TIMESTAMP" />
+		<result column="receive" property="receive" jdbcType="INTEGER" />
+		<result column="receive_time" property="receiveTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		openid, total_amount, return_code, return_msg, err_code,
+		mch_billno,
+		sent_time, receive,
+		receive_time
+	</sql>
+	<insert id="save"
+		parameterType="com.sof.marketing.model.RedBagLog">
+		insert into red_bag_log (openid, total_amount,
+		return_code,
+		return_msg, err_code, mch_billno,
+		sent_time, receive,
+		receive_time
+		)
+		values (#{openid,jdbcType=VARCHAR},
+		#{totalAmount,jdbcType=INTEGER},
+		#{returnCode,jdbcType=VARCHAR},
+		#{returnMsg,jdbcType=VARCHAR}, #{errCode,jdbcType=VARCHAR},
+		#{mchBillno,jdbcType=VARCHAR},
+		#{sentTime,jdbcType=TIMESTAMP},
+		#{receive,jdbcType=INTEGER},
+		#{receiveTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.sof.marketing.model.RedBagLog">
+		insert into red_bag_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			openid,
+			total_amount,
+			return_code,
+			return_msg,
+			err_code,
+			mch_billno,
+			sent_time,
+			receive,
+			receive_time,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{openid,jdbcType=VARCHAR},
+			#{totalAmount,jdbcType=INTEGER},
+			#{returnCode,jdbcType=VARCHAR},
+			#{returnMsg,jdbcType=VARCHAR},
+			#{errCode,jdbcType=VARCHAR},
+			#{mchBillno,jdbcType=VARCHAR},
+			#{sentTime,jdbcType=TIMESTAMP},
+			#{receive,jdbcType=INTEGER},
+			#{receiveTime,jdbcType=TIMESTAMP},
+		</trim>
+	</insert>
+
+	<select id="getListByCondition" resultMap="BaseResultMap"
+		parameterType="com.sof.marketing.model.RedBagLog">
+		select
+		<include refid="Base_Column_List" />
+		from red_bag_log
+		<where>
+			<if test="openid != null and openid != ''">
+				AND openid like '%' #{openid} '%'
+			</if>
+			<if test="totalAmount != null and totalAmount != ''">
+				AND total_amount like '%' #{totalAmount} '%'
+			</if>
+			<if test="returnCode != null and returnCode != ''">
+				AND return_code like '%' #{returnCode} '%'
+			</if>
+			<if test="returnMsg != null and returnMsg != ''">
+				AND return_msg = #{returnMsg}
+			</if>
+			<if test="errCode != null and errCode != ''">
+				AND err_code = #{errCode}
+			</if>
+			<if test="mchBillno != null and mchBillno != ''">
+				AND mch_billno = #{mchBillno}
+			</if>
+			<if test="sentTime != null and sentTime != ''">
+				AND Date(sent_time) = Date(#{sentTime})
+			</if>
+			<if test="receive != null and receive != ''">
+				AND receive = #{receive}
+			</if>
+			<if test="receiveTime != null and receiveTime != ''">
+				AND receive_time = #{receiveTime}
+			</if>
+		</where>
+		order by sent_time desc
+	</select>
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="com.sof.marketing.model.RedBagLog">
+		SELECT COUNT(openid)
+		from red_bag_log
+		<where>
+			<if test="openid != null and openid != ''">
+				AND openid like '%' #{openid} '%'
+			</if>
+			<if test="totalAmount != null and totalAmount != ''">
+				AND total_amount like '%' #{totalAmount} '%'
+			</if>
+			<if test="returnCode != null and returnCode != ''">
+				AND return_code like '%' #{returnCode} '%'
+			</if>
+			<if test="returnMsg != null and returnMsg != ''">
+				AND return_msg = #{returnMsg}
+			</if>
+			<if test="errCode != null and errCode != ''">
+				AND err_code = #{errCode}
+			</if>
+			<if test="mchBillno != null and mchBillno != ''">
+				AND mch_billno = #{mchBillno}
+			</if>
+			<if test="sentTime != null and sentTime != ''">
+				AND Date(sent_time) = Date(#{sentTime})
+			</if>
+			<if test="receive != null and receive != ''">
+				AND receive = #{receive}
+			</if>
+			<if test="receiveTime != null and receiveTime != ''">
+				AND receive_time = #{receiveTime}
+			</if>
+		</where>
+	</select>
+
+	<select id="getListRedBagLogByTaskid" resultType="java.util.Map"
+		statementType="CALLABLE" parameterType="java.util.Map">
+		<![CDATA[
+		{call
+		get_obj(#{id,mode=IN,jdbcType=INTEGER})}
+		]]>
+	</select>
+</mapper>

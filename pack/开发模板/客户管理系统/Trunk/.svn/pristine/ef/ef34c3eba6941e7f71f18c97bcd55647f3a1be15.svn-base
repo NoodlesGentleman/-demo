@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sof.marketing.system.domain.SystemFunction">
+
+	<resultMap id="functionResultMap" type="com.sof.marketing.system.domain.SystemFunction">
+		<result property="function_id" column="function_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="navigation_id" column="navigation_id" />
+		<result property="function_title" column="function_title" />
+		<result property="function_remark" column="function_remark" />
+		<result property="function_sort" column="function_sort" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="function_status" column="function_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="create_time" column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+		<result property="update_time" column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+	</resultMap>
+
+	<!-- insert data -->
+	<insert id="save" parameterType="com.sof.marketing.system.domain.SystemFunction">
+		INSERT INTO SYSTEM_FUNCTION(NAVIGATION_ID, FUNCTION_TITLE, FUNCTION_REMARK, FUNCTION_SORT, FUNCTION_STATUS)
+		VALUES(#{navigation_id}, #{function_title}, #{function_remark}, #{function_sort}, #{function_status})
+	</insert>
+
+	<!-- update data -->
+	<update id="update" parameterType="com.sof.marketing.system.domain.SystemFunction">
+		UPDATE SYSTEM_FUNCTION
+		<set>
+			<if test="navigation_id != null">
+	   			NAVIGATION_ID = #{navigation_id},
+	   		</if>
+	   		<if test="function_title != null and function_title !=''">
+	   			FUNCTION_TITLE = #{function_title},
+	   		</if>
+	   		<if test="function_remark != null and function_remark !=''">
+	   			FUNCTION_REMARK = #{function_remark},
+	   		</if>
+	   		<if test="function_sort != null">
+	   			FUNCTION_SORT = #{function_sort},
+	   		</if>
+	   		<if test="function_status != null">
+	   			FUNCTION_STATUS = #{function_status},
+	   		</if>
+	   		<if test="update_time != null">
+	   			UPDATE_TIME = #{update_time},
+	   		</if>
+		</set>
+		<where>
+			FUNCTION_ID = #{function_id}
+		</where>
+	</update>
+	
+	<!-- delete data -->
+	<delete id="delete" parameterType="com.sof.marketing.system.domain.SystemFunction">
+		DELETE FROM SYSTEM_FUNCTION
+		<where>
+			FUNCTION_ID = #{function_id}
+		</where>
+	</delete>
+	
+	<!-- select data -->
+	<select id="getSystemFunctionByNavigationId" resultMap="functionResultMap">
+		SELECT * FROM SYSTEM_FUNCTION
+		<where>
+			NAVIGATION_ID = #{navigation_id} AND FUNCTION_STATUS = 1
+		</where>
+	</select>
+</mapper> 

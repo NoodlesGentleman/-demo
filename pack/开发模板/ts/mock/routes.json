@@ -1,0 +1,8 @@
+{
+  "/api/*": "/$1",
+  "/user/people": "/people",
+  "/user/info": "/info",
+  "/:resource/:id/show": "/:resource/:id",
+  "/posts/:category": "/posts?category=:category",
+  "/articles\\?id=:id": "/posts/:id"
+}

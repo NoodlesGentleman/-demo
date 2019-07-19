@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.BuildingProperty">
+	<resultMap type="com.richest.manager.domain.BuildingProperty"  id="buildingpropertyresult">
+		<result property="buildingId" column="buildingId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="Property_code" column="Property_code" />
+		<result property="Property_name" column="Property_name" />
+	</resultMap>
+	
+	<select id="getBuildingProperty" resultMap="buildingpropertyresult">
+		SELECT A.*,B.`name` AS Property_name 
+		FROM `manager`.property A 
+		INNER JOIN basicdic B 
+		ON A.Property_code = B.`code` AND B.`type` = 'building_type' 
+		WHERE buildingId = #{buildingId};
+	</select>
+</mapper>

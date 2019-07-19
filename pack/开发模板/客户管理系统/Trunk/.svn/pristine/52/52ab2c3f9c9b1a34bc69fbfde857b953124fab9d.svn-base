@@ -1,0 +1,26 @@
+# FORMAL ENVIRONMENT
+#SITE_NAME=\u9A90\u745E\u76DB\u6E05\u6D01\u7BA1\u7406
+#STORE_URL=http://www.qrsclean.com/template
+#STATIC_URL=view/static
+#STATIC_CDN=view/static
+#IMG_URL=/data/images
+#ANDROID_APK_PATH=/upload/
+#NOTFIND_URL=/404.jsp
+#ERROR_URL=/500.jsp
+#COPY_RIGHT=\u9A90\u745E\u76DB\u6E05\u6D01<br>&copy; 2017
+#ISFORMAL=1
+
+# LOCAL ENVIRONMENT
+SITE_NAME=\u4E0A\u5BCC\u8425\u9500\u5E73\u53F0
+STORE_URL=http://localhost/marketing
+STATIC_URL=view/static
+STATIC_CDN=view/static
+IMG_URL=/Users/colin/Pictures/
+ANDROID_APK_PATH=/upload/
+NOTFIND_URL=/404.jsp
+COPY_RIGHT=\u4E0A\u6D77\u79D1\u5320\u4FE1\u606F\u79D1\u6280\u6709\u9650\u516C\u53F8<br>&copy; 2015
+ISFORMAL=0
+
+#JPUSH KEY
+#jPush_masterSecret=816b53a0f13798dc4e635c9b
+#jPush_appKey=efde35fffcaf3c1681c9ecc1

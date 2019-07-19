@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sof.marketing.system.domain.SystemRoleNav">
+	
+	<resultMap id="sysrolnavresult" type="com.sof.marketing.system.domain.SystemRoleNav">
+		<result column="sys_nav_id" property="sysNavId" />
+		<result column="role_id" property="roleId" />
+		<result column="title" property="title" />
+		<result column="description" property="description" />
+	</resultMap>
+	
+	<!-- insert data -->
+	<insert id="save" parameterType="com.sof.marketing.system.domain.SystemRoleNav">
+		INSERT INTO SYS_ROLE_NAV(SYS_NAV_ID, ROLE_ID)
+		VALUES (#{sysNavId}, #{roleId})
+	</insert>
+	
+	<!-- delete data -->
+	<delete id="delete" parameterType="com.sof.marketing.system.domain.SystemRoleNav">
+		DELETE FROM SYS_ROLE_NAV
+		<where>
+			<if test="roleId != null and roleId != ''">
+				ROLE_ID = #{roleId}
+			</if>
+			<if test="sysNavId != null and sysNavId != ''">
+				AND SYS_NAV_ID = #{sysNavId}
+			</if>
+		</where>
+	</delete>
+	
+	<!-- select data -->
+	<select id="getRoleNavList" parameterType="String" resultMap="sysrolnavresult">
+		SELECT SN.TITLE AS TITLE, SN.DESCRIPTION AS DESCRIPTION,
+		ROLE_ID AS ROLEID, SYS_NAV_ID AS SYSNAVID
+		FROM SYS_ROLE_NAV NV
+		LEFT JOIN SYSTEM_NAVIGATION SN ON SN.NAVIGATIONID = NV.SYS_NAV_ID
+		<where>
+			ROLE_ID = #{roleId}
+		</where>
+	</select>
+	
+	<select id="getAllNav" resultMap="sysrolnavresult">
+		SELECT SN.TITLE AS TITLE, SN.DESCRIPTION AS DESCRIPTION,
+		ROLE_ID AS ROLEID, SYS_NAV_ID AS SYSNAVID
+		FROM SYS_ROLE_NAV NV
+		LEFT JOIN SYSTEM_NAVIGATION SN ON SN.NAVIGATIONID = NV.SYS_NAV_ID
+		ORDER BY NV.SYS_NAV_ID
+	</select>
+</mapper>

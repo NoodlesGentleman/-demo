@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.Company">
+	<resultMap type="com.richest.manager.domain.Company"  id="companyresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="buildingId" column="buildingId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+		<result property="short_name" column="short_name" />
+	</resultMap>
+	
+	<select id="getCompanyBybuildingId" resultMap="companyresult"> 
+		SELECT * FROM `manager`.receivecompany WHERE (buildingId = 0 OR buildingId = #{buildingId}) AND isDel = 0;
+	</select>
+	
+	<select id="getUserCompanyByUserId" resultMap="companyresult">
+		SELECT A.* FROM `manager`.receivecompany A INNER JOIN `manager`.user B ON A.id = B.companyId WHERE B.id = #{id};
+	</select>
+</mapper>

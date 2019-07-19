@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="basicdic"  type="com.richest.manager.domain.BasicDic"/>
+		<typeAlias alias="user"  type="com.richest.manager.domain.User"/>
+		<typeAlias alias="building"  type="com.richest.manager.domain.Building"/>
+		<typeAlias alias="company"  type="com.richest.manager.domain.Company"/>
+		<typeAlias alias="buildingproperty"  type="com.richest.manager.domain.BuildingProperty"/>
+		<typeAlias alias="customer"  type="com.richest.manager.domain.Customer"/>
+		<typeAlias alias="campaign"  type="com.richest.manager.domain.Campaign"/>
+		<typeAlias alias="process"  type="com.richest.manager.domain.Process"/>
+		<typeAlias alias="saler"  type="com.richest.manager.domain.Saler"/>
+		<typeAlias alias="naturalvisit"  type="com.richest.manager.domain.NaturalVisit"/>
+		<typeAlias alias="article"  type="com.richest.manager.domain.Article"/>
+		<typeAlias alias="accessToken"  type="com.richest.manager.domain.AccessToken"/>
+		<typeAlias alias="qrcode"  type="com.richest.manager.domain.QrCode"/>
+		<typeAlias alias="sendlog"  type="com.richest.manager.domain.SendLog"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="mappers/basicdic.xml" />
+		<mapper resource="mappers/user.xml" />
+		<mapper resource="mappers/building.xml" />
+		<mapper resource="mappers/company.xml" />
+		<mapper resource="mappers/buildingproperty.xml" />
+		<mapper resource="mappers/customer.xml" />
+		<mapper resource="mappers/campaign.xml" />
+		<mapper resource="mappers/process.xml" />
+		<mapper resource="mappers/saler.xml" />
+		<mapper resource="mappers/naturalvisit.xml" />
+		<mapper resource="mappers/Article.xml" />
+		<mapper resource="mappers/WXAccessToken.xml" />
+		<mapper resource="mappers/qrcode.xml" />
+		<mapper resource="mappers/sendlog.xml" />
+	</mappers>
+</configuration>	

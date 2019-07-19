@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.sof.marketing.model.Redpackheadconfig" >
+  <resultMap id="BaseResultMap" type="com.sof.marketing.model.Redpackheadconfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jobname" property="jobname" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="jobtype" property="jobtype" jdbcType="VARCHAR" />
+    <result column="pricetype" property="pricetype" jdbcType="INTEGER" />
+    <result column="minprice" property="minprice" jdbcType="DECIMAL" />
+    <result column="maxprice" property="maxprice" jdbcType="DECIMAL" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="sendcount" property="sendcount" jdbcType="INTEGER" />
+    <result column="surplus" property="surplus" jdbcType="INTEGER" />
+    <result column="begintime" property="begintime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.sof.marketing.model.Redpackheadconfig" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, jobname, title, jobtype, pricetype, minprice, maxprice, sendtime, total, sendcount, 
+    surplus, begintime, endtime, createtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from redpackheadconfig
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from redpackheadconfig
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="save" parameterType="com.sof.marketing.model.Redpackheadconfig" useGeneratedKeys="true" keyProperty="id" >
+    insert into redpackheadconfig (jobname, title, jobtype, 
+      pricetype, minprice, maxprice, 
+      sendtime, total, 
+      surplus, begintime, endtime, content)
+    values (#{jobname,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{jobtype,jdbcType=VARCHAR}, 
+      #{pricetype,jdbcType=INTEGER}, #{minprice,jdbcType=DECIMAL}, #{maxprice,jdbcType=DECIMAL}, 
+      #{sendtime,jdbcType=TIMESTAMP}, #{total,jdbcType=INTEGER},
+      #{surplus,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sof.marketing.model.Redpackheadconfig" useGeneratedKeys="true" keyProperty="id" >
+    insert into redpackheadconfig
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      jobname,
+      title,
+      jobtype,
+      pricetype,
+      minprice,
+      maxprice,
+      sendtime,
+      total,
+      sendcount,
+      surplus,
+      begintime,
+      endtime,
+      createtime,
+      content,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{jobname,jdbcType=VARCHAR},
+      #{title,jdbcType=VARCHAR},
+      #{jobtype,jdbcType=VARCHAR},
+      #{pricetype,jdbcType=INTEGER},
+      #{minprice,jdbcType=DECIMAL},
+      #{maxprice,jdbcType=DECIMAL},
+      #{sendtime,jdbcType=TIMESTAMP},
+      #{total,jdbcType=INTEGER},
+      #{sendcount,jdbcType=INTEGER},
+      #{surplus,jdbcType=INTEGER},
+      #{begintime,jdbcType=TIMESTAMP},
+      #{endtime,jdbcType=TIMESTAMP},
+      #{createtime,jdbcType=TIMESTAMP},
+      #{content,jdbcType=LONGVARCHAR},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sof.marketing.model.Redpackheadconfig" >
+    update redpackheadconfig
+    <set >
+      <if test="jobname != null" >
+        jobname = #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtype != null" >
+        jobtype = #{jobtype,jdbcType=VARCHAR},
+      </if>
+      <if test="pricetype != null" >
+        pricetype = #{pricetype,jdbcType=INTEGER},
+      </if>
+      <if test="minprice != null" >
+        minprice = #{minprice,jdbcType=DECIMAL},
+      </if>
+      <if test="maxprice != null" >
+        maxprice = #{maxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="sendtime != null" >
+        sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="sendcount != null" >
+        sendcount = #{sendcount,jdbcType=INTEGER},
+      </if>
+      <if test="surplus != null" >
+        surplus = #{surplus,jdbcType=INTEGER},
+      </if>
+      <if test="begintime != null" >
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sof.marketing.model.Redpackheadconfig" >
+    update redpackheadconfig
+    set jobname = #{jobname,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      jobtype = #{jobtype,jdbcType=VARCHAR},
+      pricetype = #{pricetype,jdbcType=INTEGER},
+      minprice = #{minprice,jdbcType=DECIMAL},
+      maxprice = #{maxprice,jdbcType=DECIMAL},
+      sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=INTEGER},
+      sendcount = #{sendcount,jdbcType=INTEGER},
+      surplus = #{surplus,jdbcType=INTEGER},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sof.marketing.model.Redpackheadconfig" >
+    update redpackheadconfig
+    set jobname = #{jobname,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      jobtype = #{jobtype,jdbcType=VARCHAR},
+      pricetype = #{pricetype,jdbcType=INTEGER},
+      minprice = #{minprice,jdbcType=DECIMAL},
+      maxprice = #{maxprice,jdbcType=DECIMAL},
+      sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=INTEGER},
+      sendcount = #{sendcount,jdbcType=INTEGER},
+      surplus = #{surplus,jdbcType=INTEGER},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getListByCondition" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from redpackheadconfig
+    <where>
+      <if test="redpackheadconfig.id != null and redpackheadconfig.id != ''" >
+        AND id like '%' #{redpackheadconfig.id} '%'
+      </if>
+      <if test="redpackheadconfig.title != null and redpackheadconfig.title != ''" >
+        AND title like '%' #{redpackheadconfig.title} '%'
+      </if>
+      <if test="redpackheadconfig.jobtype != null and redpackheadconfig.jobtype != ''" >
+        AND jobtype = #{redpackheadconfig.jobtype}
+      </if>
+      <if test="redpackheadconfig.pricetype != null and redpackheadconfig.pricetype != ''" >
+        AND pricetype = #{redpackheadconfig.pricetype}
+      </if>
+     <if test="startDate != null and startDate != ''" >
+        AND DATE(sendtime) <![CDATA[>=]]> DATE(#{startDate,jdbcType=DATE})
+      </if>
+      <if test="endDate != null and endDate != ''" >
+        AND DATE(sendtime) <![CDATA[<=]]> DATE(#{endDate,jdbcType=DATE})
+      </if>
+    </where>
+    order by createtime desc
+  </select>
+  <select id="getCountByCondition" resultType="java.lang.Integer" parameterType="Map">
+	SELECT COUNT(id)
+	from redpackheadconfig
+    <where>
+       <if test="redpackheadconfig.id != null and redpackheadconfig.id != ''" >
+        AND id like '%' #{redpackheadconfig.id} '%'
+      </if>
+      <if test="redpackheadconfig.title != null and redpackheadconfig.title != ''" >
+        AND title like '%' #{redpackheadconfig.title} '%'
+      </if>
+      <if test="redpackheadconfig.jobtype != null and redpackheadconfig.jobtype != ''" >
+        AND jobtype = #{redpackheadconfig.jobtype}
+      </if>
+      <if test="redpackheadconfig.pricetype != null and redpackheadconfig.pricetype != ''" >
+        AND pricetype = #{redpackheadconfig.pricetype}
+      </if>
+      <if test="startDate != null and startDate != ''" >
+        AND DATE(sendtime) <![CDATA[>=]]> DATE(#{startDate,jdbcType=DATE})
+      </if>
+      <if test="endDate != null and endDate != ''" >
+        AND DATE(sendtime) <![CDATA[<=]]> DATE(#{endDate,jdbcType=DATE})
+      </if>
+    </where>
+  </select>
+  
+</mapper>

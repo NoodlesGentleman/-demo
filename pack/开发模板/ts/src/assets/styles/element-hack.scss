@@ -1,0 +1,8 @@
+@import "variable";
+
+.el-checkbox-button.is-checked .el-checkbox-button__inner {
+  color: #fff;
+  background-color: $--color-primary;
+  border-color: $--color-primary;
+  box-shadow: -1px 0 0 0 #8cc5ff;
+}

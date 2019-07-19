@@ -1,0 +1,75 @@
+svn   地址:svn://47.100.46.108/yeedaa_platform/trunk
+
+登录账户:qianyong = qy0989
+
+微信公众号账户登录密码：
+	marketing@yeedaa.com
+	Yeedaa!123
+
+开发者APPID:
+ 	wx6d0ed03d37452a30
+
+公司共享网盘登录信息
+链接：\\192.168.1.200\yeedaa
+
+账号：guest_member
+
+密码：yeedaa!0908
+
+权限：能看到共享目录
+操作方式：
+计算机-盘符路径路输入链接-输入用户名及密码-登录即可
+
+
+https://gitee.com/yeshili/iview-admin2.0 //iview
+
+http://www.css88.com/doc/lodash/       //数据处理插件库
+
+http://www.360doc.com/content/17/1020/00/47869400_696515435.shtml   // iview 后台管理系统
+
+http://www.hewebgl.com/article/articledir/1  webGl中文网
+
+https://blog.csdn.net/u010588262/article/details/79570436    three.js
+
+https://www.cnblogs.com/shawen/p/5878262.html  资料
+
+http://www.exposcm.com/Article/detail/id/1412.html    会展网站模板
+
+
+https://cn.bing.com/  国外bing网站
+
+https://blog.csdn.net/brake_lzk/article/details/80678567 vue 开发APP返回按钮的
+
+http://yingxiao.baidu.com/new/home/help/details/id/4936?ly=help_next&castk=LTE%3D 百度商桥黑名单
+
+https://github.com/EasyTuan/mui-kidApp mui 案例
+
+https://blog.csdn.net/c__chao/article/details/78573737接口
+
+
+http://www.cnblogs.com/jikey/p/3604459.html // js高级知识
+
+
+
+http://www.sohu.com/a/254784316_99972029 // 阿里云服务器域名购买教程
+
+https://www.jianshu.com/p/cd3fee40ef59 // 前端进阶
+
+
+https://www.jianshu.com/p/c2f7d96a5a75 //阿里云服务器购买使用步骤
+
+
+
+https://www.wappalyzer.com/                // 查询网站是什么框架，用了哪些技术栈写的
+
+https://juejin.im/post/5d2bf33a6fb9a07eae2a8dd6
+
+
+http://caibaojian.com/fe-weekly-20190714.html // vue开发小游戏
+
+
+https://blog.csdn.net/wang729506596/article/details/83019131 // 数组API
+
+
+
+https://segmentfault.com/a/1190000016481101 // 大厂面试

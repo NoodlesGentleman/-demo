@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richest.manager.domain.User">
+	<resultMap type="com.richest.manager.domain.User"  id="userresult">
+		<result property="id" column="id"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="name" column="name" />
+		<result property="openid" column="openid" />
+		<result property="password" column="password" />
+		<result property="mobile" column="mobile" />
+		<result property="cardId" column="cardId" />
+		<result property="type_code" column="type_code" />
+		<result property="isOccupation" column="isOccupation"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="companyId" column="companyId"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="company" column="company" />
+		<result property="store" column="store" />
+		<result property="integral" column="integral"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+		<result property="createtime" column="createtime" jdbcType="TIMESTAMP"  javaType="java.util.Date" />
+		<result property="isDel" column="isDel"  jdbcType="INTEGER"  javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `manager`.`user` (`name`, `openid`, `password`, `mobile`, `cardId`, `type_code`, `isOccupation`, `companyId`, `company`, `store`) 
+		VALUES (#{name}, #{openid}, #{password}, #{mobile}, #{cardId}, #{type_code}, #{isOccupation}, #{companyId}, #{company}, #{store});
+	</insert>
+	
+	<update id="update" parameterType="User">
+		UPDATE `manager`.`user` SET 
+		`name` = #{name},
+		`mobile` = #{mobile},
+		`companyId` = #{companyId},
+		`company` = (SELECT `name` FROM receivecompany WHERE id = #{companyId}),
+		`store` = (SELECT short_name FROM receivecompany WHERE id = #{companyId})
+		WHERE id = #{id};
+	</update>
+	
+	<select id="getUserById" resultMap="userresult">
+		SELECT
+		A.id,
+		A.name,
+		A.openid,
+		A.password,
+		A.mobile,
+		A.cardId,
+		A.type_code,
+		A.isOccupation,
+		A.companyId,
+		B.`name` AS company,
+		B.short_name AS store,
+		A.integral,
+		A.createtime,
+		A.isDel
+		FROM `manager`.`user` A
+		LEFT OUTER JOIN `manager`.receivecompany B
+		ON A.companyId = B.id 
+		WHERE A.id = #{id};
+	</select>
+	
+	<select id="getUserByOpenId" resultMap="userresult">
+		SELECT
+		A.id,
+		A.name,
+		A.openid,
+		A.password,
+		A.mobile,
+		A.cardId,
+		A.type_code,
+		A.isOccupation,
+		A.companyId,
+		B.`name` AS company,
+		B.short_name AS store,
+		A.integral,
+		A.createtime,
+		A.isDel
+		FROM `manager`.`user` A
+		LEFT OUTER JOIN `manager`.receivecompany B
+		ON A.companyId = B.id
+		WHERE A.openid = #{openid};
+	</select>
+	
+	<select id="getUserCountByOpenid" resultType="java.lang.Integer">
+		SELECT COUNT(id) FROM `manager`.`user` WHERE openid = #{openid};
+	</select>
+</mapper>

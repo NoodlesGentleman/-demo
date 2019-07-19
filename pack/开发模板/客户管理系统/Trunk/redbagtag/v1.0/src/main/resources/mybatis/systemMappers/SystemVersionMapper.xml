@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sof.marketing.system.domain.SystemVersion">
+
+	<resultMap id="versionResultMap" type="com.sof.marketing.system.domain.SystemVersion">
+		<id property="version_id" column="version_id" />
+		<result property="android_version" column="android_version" />
+		<result property="ios_version" column="ios_version" />
+		<result property="android_url" column="android_url" />
+		<result property="ios_url" column="ios_url" />
+		<result property="android_content" column="android_content" />
+		<result property="ios_content" column="ios_content" />
+		<result property="create_time" column="create_time" />
+		<result property="create_by" column="create_by" />
+		<result property="android_is_forced" column="android_is_forced" />
+		<result property="ios_is_forced" column="ios_is_forced" />
+		<result property="ios_flag" column="ios_flag" />
+	</resultMap>
+
+	<!-- insert data -->
+	<insert id="save" parameterType="com.sof.marketing.system.domain.SystemVersion">
+		INSERT INTO SYS_VERSION(VERSION_ID, ANDROID_VERSION, IOS_VERSION, ANDROID_URL, IOS_URL,
+			ANDROID_CONTENT, IOS_CONTENT, CREATE_TIME, CREATE_BY, ANDROID_IS_FORCED, IOS_IS_FORCED, IOS_FLAG)
+		VALUES(#{version_id},#{android_version},#{ios_version},#{android_url},#{ios_url},
+	   		#{android_content},#{ios_content},#{create_time},#{create_by},#{android_is_forced},
+	   		#{ios_is_forced},#{ios_flag})
+	</insert>
+
+	<!-- update data -->
+	<update id="update" parameterType="com.sof.marketing.system.domain.SystemVersion">
+		UPDATE SYS_VERSION
+		<set>
+			<if test="android_version != null and android_version !=''">
+	   			ANDROID_VERSION = #{android_version},
+	   		</if>
+	   		<if test="ios_version != null and ios_version !=''">
+	   			IOS_VERSION = #{ios_version},
+	   		</if>
+	   		<if test="android_url != null and android_url !=''">
+	   			ANDROID_URL = #{android_url},
+	   		</if>
+	   		<if test="ios_url != null and ios_url !=''">
+	   			IOS_URL = #{ios_url},
+	   		</if>
+	   		<if test="android_content != null and android_content !=''">
+	   			ANDROID_CONTENT = #{android_content},
+	   		</if>
+	   		<if test="ios_content != null and ios_content !=''">
+	   			IOS_CONTENT = #{ios_content},
+	   		</if>
+	   		<if test="create_time != null">
+	   			CREATE_TIME = #{create_time},
+	   		</if>
+	   		<if test="create_by != null and create_by !=''">
+	   			CREATE_BY = #{create_by},
+	   		</if>
+	   		<if test="android_is_forced != null">
+	   			ANDROID_IS_FORCED = #{android_is_forced},
+	   		</if>
+	   		<if test="ios_is_forced != null">
+	   			IOS_IS_FORCED = #{ios_is_forced},
+	   		</if>
+	   		<if test="ios_flag != null">
+	   			IOS_FLAG = #{ios_flag},
+	   		</if>
+		</set>
+		<where>
+	   		VERSION_ID = #{version_id}
+	   	</where>
+	</update>
+	
+	<!-- delete data -->
+	<delete id="delete" parameterType="com.sof.marketing.system.domain.SystemVersion">
+		DELETE FROM SYS_VERSION
+		<where>
+			VERSION_ID = #{version_id}
+		</where>
+	</delete>
+	
+	<!-- select data -->
+	<select id="getVersionById" resultType="com.sof.marketing.system.domain.SystemVersion">
+		SELECT * FROM SYS_VERSION
+		<where>
+			VERSION_ID = #{version_id}
+		</where>
+	</select>
+	
+	<select id="getVersionList" resultType="com.sof.marketing.system.domain.SystemVersion">
+		SELECT * FROM SYS_VERSION
+		<where>
+			<if test="android_version != null and android_version !=''">
+	   			ANDROID_VERSION = #{android_version}
+	   		</if>
+	   		<if test="ios_version != null and ios_version !=''">
+	   			AND IOS_VERSION = #{ios_version}
+	   		</if>
+	   		<if test="android_url != null and android_url !=''">
+	   			AND ANDROID_URL = #{android_url}
+	   		</if>
+	   		<if test="ios_url != null and ios_url !=''">
+	   			AND IOS_URL = #{ios_url}
+	   		</if>
+	   		<if test="android_content != null and android_content !=''">
+	   			AND ANDROID_CONTENT = #{android_content}
+	   		</if>
+	   		<if test="ios_content != null and ios_content !=''">
+	   			AND IOS_CONTENT = #{ios_content}
+	   		</if>
+	   		<if test="create_time != null">
+	   			AND CREATE_TIME = #{create_time}
+	   		</if>
+	   		<if test="create_by != null and create_by !=''">
+	   			AND CREATE_BY = #{create_by}
+	   		</if>
+	   		<if test="android_is_forced != null">
+	   			AND ANDROID_IS_FORCED = #{android_is_forced}
+	   		</if>
+	   		<if test="ios_is_forced != null">
+	   			AND IOS_IS_FORCED = #{ios_is_forced}
+	   		</if>
+	   		<if test="ios_flag != null">
+	   			AND IOS_FLAG = #{ios_flag}
+	   		</if>
+		</where>
+	</select>
+	
+	<select id="getVersionListCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM SYS_VERSION
+		<where>
+			<if test="android_version != null and android_version !=''">
+	   			ANDROID_VERSION = #{android_version}
+	   		</if>
+	   		<if test="ios_version != null and ios_version !=''">
+	   			AND IOS_VERSION = #{ios_version}
+	   		</if>
+	   		<if test="android_url != null and android_url !=''">
+	   			AND ANDROID_URL = #{android_url}
+	   		</if>
+	   		<if test="ios_url != null and ios_url !=''">
+	   			AND IOS_URL = #{ios_url}
+	   		</if>
+	   		<if test="android_content != null and android_content !=''">
+	   			AND ANDROID_CONTENT = #{android_content}
+	   		</if>
+	   		<if test="ios_content != null and ios_content !=''">
+	   			AND IOS_CONTENT = #{ios_content}
+	   		</if>
+	   		<if test="create_time != null">
+	   			AND CREATE_TIME = #{create_time}
+	   		</if>
+	   		<if test="create_by != null and create_by !=''">
+	   			AND CREATE_BY = #{create_by}
+	   		</if>
+	   		<if test="android_is_forced != null">
+	   			AND ANDROID_IS_FORCED = #{android_is_forced}
+	   		</if>
+	   		<if test="ios_is_forced != null">
+	   			AND IOS_IS_FORCED = #{ios_is_forced}
+	   		</if>
+	   		<if test="ios_flag != null">
+	   			AND IOS_FLAG = #{ios_flag}
+	   		</if>
+		</where>
+	</select>
+	
+	<select id="getVersionByParam" resultType="com.sof.marketing.system.domain.SystemVersion">
+		SELECT * FROM SYS_VERSION
+		<where>
+			<if test="type == 'IOS'">
+				IOS_VERSION IS NOT NULL AND IOS_VERSION != ''
+				AND IOS_VERSION > #{version}
+			</if>
+			<if test="type == 'ANDROID'">
+				ANDROID_VERSION IS NOT NULL AND ANDROID_VERSION != ''
+				AND ANDROID_VERSION > #{version}
+			</if>
+			AND (CREATE_TIME BETWEEN DATE_FORMAT(#{startTime},'%Y-%m-%d %H:%i:%s')
+				AND DATE_FORMAT(#{endTime},'%Y-%m-%d %H:%i:%s'))
+			ORDER BY CREATE_TIME DESC
+		</where>
+	</select>
+	
+	<select id="getVersionByParamCount" resultType="com.sof.marketing.system.domain.SystemVersion">
+		SELECT COUNT(*) FROM SYS_VERSION
+		<where>
+			<if test="type == 'IOS'">
+				IOS_VERSION IS NOT NULL AND IOS_VERSION != ''
+				AND IOS_VERSION > #{version}
+			</if>
+			<if test="type == 'ANDROID'">
+				ANDROID_VERSION IS NOT NULL AND ANDROID_VERSION != ''
+				AND ANDROID_VERSION > #{version}
+			</if>
+			AND (CREATE_TIME BETWEEN DATE_FORMAT(#{startTime},'%Y-%m-%d %H:%i:%s')
+				AND DATE_FORMAT(#{endTime},'%Y-%m-%d %H:%i:%s'))
+			ORDER BY CREATE_TIME DESC
+		</where>
+	</select>	
+</mapper> 
